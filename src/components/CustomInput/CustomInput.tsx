@@ -1,11 +1,11 @@
 import React from "react";
-import style from ".CustomInput.module.css";
-import InputPropsTypes from "../componentsTypes/CustomInpuTypes";
+import style from "./CustomInput.module.css";
+import InputPropsTypes from "../../componentsTypes/CustomInputTypes";
 
 function CustomInput({
   type,
   value,
-  blur,
+  blur="",
   onfocus,
   onchange,
   label,

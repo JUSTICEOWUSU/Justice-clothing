@@ -1,0 +1,58 @@
+.bagContainer{
+   display: inline-block; 
+   padding: 10px;
+   position: relative;
+}
+
+.bigBag{
+    font-size: 1.6rem;
+    margin: auto;
+}
+
+.total{
+    display: inline-block;
+    position: absolute;
+    font-size: 11px;
+    top: 35%;
+    left: 35%;
+    bottom: 50%;
+}
+
+.smallBag{
+    font-size: 1.2rem;
+    display: none;
+}
+
+.cartItems{
+    display: inline-block;
+    position: absolute;
+    width: 120px;
+    height: 200px;
+    border: 1px solid black;
+    bottom: 0;
+    top: 100%;
+    right: 100%;
+    left: -160%;
+    z-index: 5;
+}
+
+@media all and (max-width: 700px) {
+    .bagContainer{
+        margin: auto;
+    }
+    .bigBag{
+        display: none;
+    }
+
+    .total{
+        left: 41%;
+    }
+
+    .smallBag{
+        display: block;
+    }
+
+    .cartItems{
+        left: -200%;
+    }
+}

@@ -13,7 +13,7 @@ function CustomNavLink({
 }: NavLinkDataTypes): JSX.Element {
   return (
     <span className={style.navLinkContainer}>
-      <NavLink to={destination}> {content} </NavLink>
+      <NavLink to={destination} > {content} </NavLink>
     </span>
   );
 }

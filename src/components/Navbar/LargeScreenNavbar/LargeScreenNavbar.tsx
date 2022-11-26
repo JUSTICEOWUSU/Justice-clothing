@@ -1,6 +1,8 @@
 import style from "./LargeScreenNavbar.module.css";
 import CustomNavLink from "../../CustomNavLink/CustomNavLink";
 import SmallScreenBar from "../SmallScreenNavbar/SmallScreenBar";
+import CartBag from "../../Cart/CartBag/CartBag";
+import {Outlet} from "react-router-dom"
 
 function LargeScreenNavbar(): JSX.Element {
   return (
@@ -13,10 +15,11 @@ function LargeScreenNavbar(): JSX.Element {
         <CustomNavLink destination={"/contacts"} content={"shop"} />
         <CustomNavLink destination={"/contacts"} content={"login"} />
         <CustomNavLink destination={"/contacts"} content={"contact us"} />
-        <CustomNavLink destination={"/contacts"} content={"contacts"} />
+        <CartBag/>
       </span>
     </div>
     <SmallScreenBar/>
+    <Outlet/>
     </>
   );
 }

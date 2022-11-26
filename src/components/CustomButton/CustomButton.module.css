@@ -1,0 +1,26 @@
+
+  .btn {
+    border-radius: 3px;
+    padding: 0px 20px;
+    font-size: 1.2rem;
+    margin: auto;
+    transition: all 0.3s;
+  }
+  
+  .btn:hover {
+    filter: brightness(90%);
+  }
+   
+  /* @media all and (max-width: 800px) {
+    .btn {
+     font-size: 1rem;
+  
+    }
+  }
+  
+  @media all and (max-width: 656px) {
+    .btn {
+      padding: 0px 10px;
+      font-size: 1.1rem;
+    }
+  } */
