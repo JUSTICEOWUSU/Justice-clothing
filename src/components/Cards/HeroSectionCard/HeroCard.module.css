@@ -37,35 +37,60 @@
 
 .cardDescription:hover {
     background-color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
 }
 
-.descriptionTitle{
-    font-weight:900;
+.descriptionTitle {
+    font-weight: 900;
     font-size: 18px;
     text-transform: uppercase;
 }
 
-.descriptionSub{
+.descriptionSub {
     font-size: 13.5px;
-  text-transform: uppercase;
+    text-transform: uppercase;
 }
 
-.large{
+.large {
     height: 340px;
 }
 
-@media all and (max-width: 960px) { 
-    .heroCardCont{
+
+/* Tablet view */
+@media all and (max-width: 960px) {
+    .heroCardCont {
         height: 260px;
     }
 
-    .last{
+    .last {
         height: 40vh;
     }
- }
+}
 
- @media all and (max-width: 960px){
-    .last{
+/* Mobile view */
+@media all and (max-width: 500px) {
+
+    .descriptionTitle {
+        font-size: 16px;
+    }
+
+    .descriptionSub {
+        font-size: 12px;
+    }
+
+    .cardDescription {
+        width: 60%;
+        height: 30%;
+        top: 35%;
+        left: 20%;
+
+    }
+
+    .heroCardCont {
+        height: 220px;
+    }
+
+    .last {
         height: unset;
     }
- }
+}

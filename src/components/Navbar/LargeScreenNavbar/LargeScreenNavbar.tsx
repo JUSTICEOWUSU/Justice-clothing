@@ -12,7 +12,7 @@ function LargeScreenNavbar(): JSX.Element {
 
       <span className={style.navItemsContainer}>
         <CustomNavLink destination={"/"} content={"home"} />
-        <CustomNavLink destination={"/contacts"} content={"shop"} />
+        <CustomNavLink destination={"/shop"} content={"shop"} />
         <CustomNavLink destination={"/contacts"} content={"login"} />
         <CustomNavLink destination={"/contacts"} content={"contact us"} />
         <CartBag/>

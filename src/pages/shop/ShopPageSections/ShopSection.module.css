@@ -1,0 +1,19 @@
+
+.shopSectionCont{
+    margin: 7px auto;
+}
+
+.sectionTitle{
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 1.8rem;
+}
+
+.more{
+    display: block;
+    text-align: right;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 15px;
+}
+
