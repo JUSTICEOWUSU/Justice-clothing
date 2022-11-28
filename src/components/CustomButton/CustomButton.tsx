@@ -10,8 +10,8 @@ function CustomButton({
   child
 }: CustomButtonProps): JSX.Element {
   return (
-    <button className={`${style.btn}}`} style={btnStyle} onClick={onclick} type={type}>
-      {text}{child}
+    <button className={`${style.btn}`} style={btnStyle} onClick={onclick} type={type}>
+      {text} {child}
     </button>
   );
 }

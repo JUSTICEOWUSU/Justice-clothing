@@ -1,27 +1,14 @@
+.btn {
+  padding: 7px;
+  margin: auto;
+  text-transform: uppercase;
+  color: #fff;
+  outline: none;
+  border: 1px solid #000;
+  background-color: #000;
+}
 
-  .btn {
-    padding: 10px;
-    margin: auto;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    color: #fff;
-    border: 1px solid #000;
-  }
-  
-  .btn:hover {
-    filter: brightness(90%);
-  }
-   
-  /* @media all and (max-width: 800px) {
-    .btn {
-     font-size: 1rem;
-  
-    }
-  }
-  
-  @media all and (max-width: 656px) {
-    .btn {
-      padding: 0px 10px;
-      font-size: 1.1rem;
-    }
-  } */
+.btn:hover {
+  filter: brightness(120%);
+}
+

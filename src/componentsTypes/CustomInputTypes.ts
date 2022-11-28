@@ -1,7 +1,7 @@
 
 export default interface InputPropsTypes {
     type: string;
-    value: string;
+    value?: string;
     blur? : string;
     label: string;
     onfocus?: (event: React.FocusEvent<HTMLElement>) => void;

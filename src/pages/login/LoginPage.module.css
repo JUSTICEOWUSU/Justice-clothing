@@ -1,0 +1,40 @@
+.loginPageCont{
+    margin-top: 3%;
+}
+
+.formTitle{
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.subTitle{
+    display: block;
+    margin-bottom: 20px;
+}
+
+@media all and (950px >= width >= 700px){
+    .subTitle{
+        margin-bottom: 0;
+    }
+
+    .signUp{
+        margin-top:5rem;
+    }
+}
+
+
+@media all and (700px >= width){
+    .subTitle{
+        margin-bottom: 0;
+    }
+
+    .signUp{
+        margin-top:2rem;
+    }
+
+    .loginPageCont{
+        padding-left: 5px;
+        padding-right: 0;
+        margin-bottom: 3%;
+    }
+}

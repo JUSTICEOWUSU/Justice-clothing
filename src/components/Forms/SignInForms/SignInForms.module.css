@@ -1,0 +1,7 @@
+.buttonsCont{
+    padding: 15px 0px;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    justify-content: space-between;
+}

@@ -8,17 +8,17 @@ import {FcGoogle} from "react-icons/fc";
 
 function SignInForms():JSX.Element {
   return (
-    <div className={`${style.signInFormCont} container-fluid row overflow-hidden`}>
-      <form col-8>
-        <CustomInput type={"email"} value={""} label={"email"} />
-        <CustomInput type={"password"} value={""} label={"password"} />
+    <div className={`${style.signInFormCont} row gx-3`}>
+      <form className={"col-8"}>
+        <CustomInput type={"email"}  label={"email"} />
+        <CustomInput type={"password"} label={"password"} />
         <CustomButton type={"submit"} text={"sign in"}/>
       </form>
 
       <span className={`col-4 ${style.buttonsCont}`}>
-        <CustomButton text={"sign in with google"} btnStyle={{color:"#000", border:"1px solid #000"}} child={<FcGoogle/>} />
-        <CustomButton text={"sign in with facebook"} btnStyle={{background:"4267B2"}} child={<CiFacebook/>} />
-        <CustomButton text={"sign in with twitter"} btnStyle={{background:"#1DA1F2"}} child={<AiOutlineTwitter/>} />
+        <CustomButton text={"sign in with google"} btnStyle={{color:"#000",background:"#fff",fontSize:"14px",margin:" 2px 0"}} child={<FcGoogle/>} />
+        <CustomButton text={"sign in with twitter"} btnStyle={{background:"#1DA1F2",fontSize:"14px",margin:" 2px 0"}} child={<AiOutlineTwitter/>} />
+        <CustomButton text={"sign in with facebook"} btnStyle={{background:"#4267B2",fontSize:"14px",margin:" 2px 0"}} child={<CiFacebook/>} />
       </span>
     </div>
   );

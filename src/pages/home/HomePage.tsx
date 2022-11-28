@@ -5,7 +5,7 @@ import HeroCard from "../../components/Cards/HeroSectionCard/HeroCard";
 
 function HomePage(): JSX.Element {
   return (
-    <div className={`${style.homePageCont} container row g-2 overflow-hidden`}>
+    <div className={`${style.homePageCont} container row g-2 gx-lg-3 overflow-hidden`}>
       {HomePageData.map(
         ({ title, imageUrl, size, id, linkUrl }, index, arr) => {
 

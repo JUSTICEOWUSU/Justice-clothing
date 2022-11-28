@@ -47,3 +47,22 @@
     height: 8%;
 }
 
+
+.cartCard {
+    height: 100%;
+}
+
+.cartCard 
+button,
+.itemDescription{
+    display: none;
+}
+
+.cartCard .cardItems{
+    border: none;
+    height: 100%;
+}
+
+.cartCard .cardItems:hover {
+    filter: unset
+}
