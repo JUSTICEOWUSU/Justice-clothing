@@ -50,6 +50,7 @@
 
 .cartCard {
     height: 100%;
+    padding: 2.5% 5.5%;
 }
 
 .cartCard 
@@ -65,4 +66,24 @@ button,
 
 .cartCard .cardItems:hover {
     filter: unset
+}
+
+@media all and (950px >= width >= 700px){
+    .cartCard {
+        padding: unset;
+    }
+}
+
+@media all and (width <= 700px){
+    .cartCard {
+        padding: 1% 3%;
+    }
+
+    .cartCard img{
+        object-position:  0;
+    }
+
+    .cartCard .cardItems{
+        border: 0.5px solid #000;
+    }
 }

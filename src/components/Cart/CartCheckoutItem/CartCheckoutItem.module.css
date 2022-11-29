@@ -1,0 +1,62 @@
+.itemContainer{
+    height: 30%;
+    padding-right: 0;
+    width: 75%;
+    border-bottom: 1.5px solid #000;
+}
+
+.evenStyle{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemDetails{
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.itemPrice {
+    font-size: 16px;
+}
+
+.itemIcon {
+    font-size: 28px;
+    font-weight: 100;
+}
+
+@media all and (950px >= width >= 700px){
+    .itemContainer{
+        width: unset;
+        margin: 2% 0;
+        padding: 0 2px;
+    }
+}
+
+@media all and (700px>= width ){
+
+    .itemDetails{
+        font-size: 0.9rem;
+    }
+
+    .itemContainer{
+        height: 22vh;
+        width: unset;
+        padding: 0 0.5%;
+        margin:1% 0;
+    }
+
+    .itemPrice{
+        font-size: unset;
+    }
+    
+    .itemIcon{
+        font-size: 1rem;
+    }
+
+    .evenStyle{
+        padding: 0;
+        margin: 0;
+    }
+}

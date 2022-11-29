@@ -1,0 +1,48 @@
+.headerCont{
+    padding-right: 0;
+    width: 75%;
+    border-bottom: 0.5px solid #000;
+}
+
+.evenStyle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight:800;
+}
+
+
+.evenStyle span{
+    font-size: 1.2rem;
+}
+
+
+@media all and (950px >= width >= 700px){
+    .headerCont{
+        width: unset;
+    }
+}
+
+@media all and (700px > width ){
+    .rowsCont{
+        padding: 0;
+        margin: 0;
+    }
+
+    .headerCont{
+        width: unset;
+        margin: 0;
+        padding: 0 1%;
+    }
+
+    .evenStyle{
+        padding: 0;
+        margin: 0;
+        font-weight:700;
+
+    }
+
+    .evenStyle span{
+        font-size: 0.85rem;
+    }
+}
