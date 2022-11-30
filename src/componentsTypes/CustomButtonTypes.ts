@@ -5,5 +5,6 @@ export default interface CustomButtonProps{
     type?:"submit" | "reset" | "button";
     text:string;
     btnStyle?:React.CSSProperties;
+    checkout?:string;
     onclick?:(event: React.MouseEvent<HTMLButtonElement>) => void;
 }

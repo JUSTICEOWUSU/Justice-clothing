@@ -7,10 +7,11 @@ function CustomButton({
   btnStyle,
   onclick,
   type,
-  child
+  child,
+  checkout=""
 }: CustomButtonProps): JSX.Element {
   return (
-    <button className={`${style.btn}`} style={btnStyle} onClick={onclick} type={type}>
+    <button className={`${style.btn} ${style[checkout]}`} style={btnStyle} onClick={onclick} type={type}>
       {text} {child}
     </button>
   );

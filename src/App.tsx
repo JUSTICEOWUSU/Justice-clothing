@@ -4,9 +4,7 @@ import LargeScreenNavbar from "./components/Navbar/LargeScreenNavbar/LargeScreen
 import HomePage from "./pages/home/HomePage";
 import ShopPage from "./pages/shop/ShopPage";
 import LoginPage from "./pages/login/LoginPage";
-import CartSectionalComponent from "./components/Cart/CartCheckoutItem/CartCheckoutItem";
-import CartHeader from "./components/Cart/CartHeader/CartHeader";
-
+import CheckOutPage from "./pages/checkout/CheckOutPage";
 function App() {
   return (
     <Router>
@@ -15,7 +13,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="shop" element={<ShopPage/>} />
           <Route path="login" element={<LoginPage/>}/>
-          {/* <Route path="contact" element={<CartHeader/>} /> */}
+          <Route path="contact" element={<CheckOutPage/>} />
         </Route>
       </Routes>
     </Router>

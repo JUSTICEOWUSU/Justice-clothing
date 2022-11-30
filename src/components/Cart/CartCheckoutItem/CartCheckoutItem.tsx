@@ -31,7 +31,7 @@ function CartCheckoutItem({
         </div>
 
         <div className={`col-4 ${style.evenStyle}`}>
-          <span className={style.itemDetails}>$ {price} </span>
+          <span className={style.itemDetails}>${price}</span>
         </div>
 
         <div className={`col-4 ${style.evenStyle}`}>

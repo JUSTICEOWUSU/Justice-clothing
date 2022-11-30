@@ -12,3 +12,15 @@
   filter: brightness(120%);
 }
 
+.checkout{
+  background:#1DA1F2;
+  border:0.5px solid #1DA1F2;
+  margin-right:18%;
+  padding: 0.5%;
+}
+
+@media all and (width<=950px) {
+  .checkout{
+    margin-right: unset;
+  }
+}

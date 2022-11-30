@@ -1,0 +1,36 @@
+.checkoutPageCont{
+    margin: 3% 0;
+    padding: 0;
+}
+
+.subsContainer{
+    text-align: right;
+}
+
+.total,
+.description{
+    display: block;
+    text-align: right;
+    margin: 5% 0;
+    padding-right: 20%;
+}
+
+.description{
+    text-align: center;
+    padding: 0;
+    color: red;
+    font-size: 1.2rem;
+}
+
+@media all and (950px >= width){
+.total{
+    text-align: right;
+    padding: 0;
+}
+
+.description{
+    font-size: 1rem;
+}
+}
+
+
