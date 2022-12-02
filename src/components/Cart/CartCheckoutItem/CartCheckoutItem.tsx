@@ -2,7 +2,7 @@ import style from "./CartCheckoutItem.module.css";
 import StoreCard from "../../Cards/StoreCard/StoreCard";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { FaTimes } from "react-icons/fa";
-import CheckOutItemPropType from "../../../componentsTypes/CartCheckoutItem";
+import CheckOutItemPropType from "../../../Types/CartCheckoutItem";
 
 function CartCheckoutItem({
   imageUrl,

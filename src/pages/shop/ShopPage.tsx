@@ -5,7 +5,7 @@ import ShopSection from './ShopPageSections/ShopSection'
 
 function ShopPage():JSX.Element {
   return (
-    <div className={`container mx-auto`}>
+    <div className={`container mx-auto ${style.shopPageCont}`}>
         <ShopSection {...Hats}/>
         <ShopSection {...Mens}/>
         <ShopSection {...Jackets}/>

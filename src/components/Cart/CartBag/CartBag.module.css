@@ -1,15 +1,15 @@
-.bagContainer{
-   display: inline-block; 
-   padding: 10px;
-   position: relative;
+.bagContainer {
+    display: inline-block;
+    padding: 10px;
+    position: relative;
 }
 
-.bigBag{
+.bigBag {
     font-size: 1.6rem;
     margin: auto;
 }
 
-.total{
+.total {
     display: inline-block;
     position: absolute;
     font-size: 11px;
@@ -18,42 +18,124 @@
     bottom: 50%;
 }
 
-.smallBag{
+.bagContainer:hover{
+    cursor: pointer;
+}
+
+.smallBag {
     font-size: 1.2rem;
     display: none;
 }
 
-.cartItems{
-    display: inline-block;
+.cartItems {
     position: absolute;
-    width: 120px;
-    height: 200px;
-    border: 1px solid black;
-    bottom: 0;
-    top: 100%;
+    display: inline-block;
+    width: 180px;
+    height: 250px;
+    border: 1px solid #fff;
+    bottom: 50%;
+    top: -30%;
     right: 100%;
     left: -160%;
     z-index: 5;
-    display: none;
+    color: #fff;
+    background: #000;
+    overflow: hidden;
+    text-align: center;
+    transition: all 0.3s;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.showCartBox {
+    visibility: visible;
+    opacity: 1;
+    top: 100%;
+    bottom: 0;
+}
+
+.itemsExternalCont::-webkit-scrollbar {
+    width: 5px;
+}
+
+.itemsExternalCont::-webkit-scrollbar-track {
+    background: #0c0c0c;
+}
+
+.itemsExternalCont::-webkit-scrollbar-thumb {
+    background: rgb(141, 141, 141);
+    border-radius: 10px;
+}
+
+.itemsExternalCont::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.itemsExternalCont {
+    overflow-y: scroll;
+    height: 83%;
+    width: 100%;
+    position: relative;
+}
+
+.itemsExternalCont:hover{
+    cursor: default;
+}
+
+.iDescription {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 7% 0;
+}
+
+.itemName,
+.itemPrice {
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.itemPrice {
+    font-size: 0.8rem;
+}
+
+.itemsCont {
+    margin: 0;
+    padding: 0;
+}
+
+.emptyCart{
+    display: inline-block;
+    margin-top: 20%;
+    font-size: 1rem;
 }
 
 @media all and (max-width: 700px) {
-    .bagContainer{
+    .bagContainer {
         margin: auto;
     }
-    .bigBag{
+
+    span .largeScreen {
         display: none;
     }
 
-    .total{
+    .bigBag {
+        display: none;
+    }
+
+    .total {
         left: 41%;
     }
 
-    .smallBag{
+    .smallBag {
         display: block;
     }
 
-    .cartItems{
+    .cartItems {
         left: -200%;
+        width: 150px;
     }
+
 }

@@ -12,6 +12,21 @@
   filter: brightness(120%);
 }
 
+.cartBoxButton{
+  width: 90%;
+  background: #000;
+  color: #fff;
+  border: 1px solid #fff;
+  margin: auto;
+  font-size: 0.8rem;
+}
+
+.cartBoxButton:hover{
+  background: #fff;
+  color: #000;
+  
+}
+
 .checkout{
   background:#1DA1F2;
   border:0.5px solid #1DA1F2;
@@ -22,5 +37,11 @@
 @media all and (width<=950px) {
   .checkout{
     margin-right: unset;
+  }
+}
+
+@media all and (width<=700px) {
+  .cartBoxButton{
+    font-size: 0.7rem;
   }
 }

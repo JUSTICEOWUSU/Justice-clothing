@@ -53,18 +53,28 @@
     padding: 2.5% 5.5%;
 }
 
-.cartCard 
+.cartBoxCard{
+    height: 100%;
+    padding: 2%;
+}
+
+.cartCard,
+.cartBoxCard
 button,
 .itemDescription{
     display: none;
 }
 
-.cartCard .cardItems{
+.cartCard,
+.cartBoxCard
+.cardItems{
     border: none;
     height: 100%;
 }
 
-.cartCard .cardItems:hover {
+.cartCard,
+.cartBoxCard
+.cardItems:hover {
     filter: unset
 }
 

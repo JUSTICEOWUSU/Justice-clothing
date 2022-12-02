@@ -5,13 +5,35 @@ import CustomButton from "../../CustomButton/CustomButton";
 import {CiFacebook} from "react-icons/ci";
 import {AiOutlineTwitter} from "react-icons/ai";
 import {FcGoogle} from "react-icons/fc";
+import {useState} from "react";
 
 function SignInForms():JSX.Element {
+  const [email,setEmail] = useState("")
+  const [password,setPassword] = useState("")
+
+  const onEmailChange = (e: React.ChangeEvent<HTMLInputElement>):void=>{
+    setEmail(prev =>{
+      return e.target.value
+    })
+  }
+
+  const onPasswordChange = (e: React.ChangeEvent<HTMLInputElement>):void=>{
+    setPassword(prev =>{
+      return e.target.value
+    })
+  }
+
+  const respondToSubmit=(e:React.ChangeEvent<HTMLButtonElement>):void=>{
+      e.preventDefault();
+      setEmail("")
+      setPassword("")
+  }
+
   return (
     <div className={`${style.signInFormCont} row gx-3`}>
       <form className={"col-8"}>
-        <CustomInput type={"email"}  label={"email"} />
-        <CustomInput type={"password"} label={"password"} />
+        <CustomInput type={"email"}  label={"email"} value={email} onchange={onEmailChange}/>
+        <CustomInput type={"password"} label={"password"} value={password} onchange={onPasswordChange}/>
         <CustomButton type={"submit"} text={"sign in"}/>
       </form>
 

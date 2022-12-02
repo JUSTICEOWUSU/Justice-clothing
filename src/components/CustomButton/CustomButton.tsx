@@ -1,6 +1,6 @@
 
 import style from "./CustomButton.module.css";
-import CustomButtonProps from "../../componentsTypes/CustomButtonTypes";
+import CustomButtonProps from "../../Types/CustomButtonTypes";
 
 function CustomButton({
   text,

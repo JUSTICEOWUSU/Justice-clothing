@@ -1,3 +1,4 @@
 export default interface CartBagProps{
-    total ?:number
+    total ?:number;
+    screen?:string;
 }

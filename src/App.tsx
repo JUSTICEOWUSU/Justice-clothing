@@ -9,11 +9,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element = <LargeScreenNavbar/> >
+        <Route path="/" element={<LargeScreenNavbar />}>
           <Route index element={<HomePage />} />
-          <Route path="shop" element={<ShopPage/>} />
-          <Route path="login" element={<LoginPage/>}/>
-          <Route path="contact" element={<CheckOutPage/>} />
+          <Route path="shop" element={<ShopPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="contact" element={<CheckOutPage />} />
         </Route>
       </Routes>
     </Router>

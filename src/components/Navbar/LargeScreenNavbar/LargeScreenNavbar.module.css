@@ -9,7 +9,6 @@
 
 .navItemsContainer{
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding: 2px 5px;
@@ -17,6 +16,43 @@
 
 @media all and (max-width: 700px) {
     .largeNavCont{
-        display: none;
+        align-items: start;
+        transition: all 0.3s;
+        position: fixed;
+        top: 0;
+        height: 100vh;
+        flex-direction: column;
+        justify-content: unset;
+        padding: 3% 0;
+        width: 50vw;
+        background:whitesmoke;
+        z-index: 20;
+        transform: translateX(-50vw);
+    }
+
+    .showNav{
+        transform: translateX(0);
+    }
+
+    .logoContainer{
+        display: inline-block;
+        padding: 5%;
+    }
+
+    .navItemsContainer{
+        display: unset;
+        width: 90%;
+        padding: 2px;
+        align-items: start;
+    }
+
+    .navItemsContainer span {
+        display: block;
+        padding: 1% 5%;
+        margin: 5% auto;
+    }
+
+    .navItemsContainer span:hover{
+        background: rgba(0,0,0,0.1);
     }
  }

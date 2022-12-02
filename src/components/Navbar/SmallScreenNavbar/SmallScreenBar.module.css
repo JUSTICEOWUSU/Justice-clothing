@@ -19,6 +19,13 @@
 
 @media all and (max-width: 700px) {
     .smallScreenBarCont{
+        margin-top: 0;
         display: flex;
+        top:0;
+        position: fixed;
+        z-index: 10;
+        background: #fff;
+        border-bottom: 1px solid #000;
+
     }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import style from "./HeroCard.module.css"
-import HeroCardProps from '../../../componentsTypes/HeroCardTypes'
+import HeroCardProps from '../../../Types/HeroCardTypes'
 import {NavigateFunction, useNavigate} from "react-router-dom"
 
 function HeroCard({title, imageUrl, linkUrl, size= "",styles,last=""}:HeroCardProps) {

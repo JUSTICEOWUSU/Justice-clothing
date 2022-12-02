@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./CustomInput.module.css";
-import InputPropsTypes from "../../componentsTypes/CustomInputTypes";
+import InputPropsTypes from "../../Types/CustomInputTypes";
 
 function CustomInput({
   type,

@@ -33,4 +33,10 @@
 }
 }
 
+@media all and (700px >= width){
+    .checkoutPageCont{
+        margin-top: 5rem;
+    }
+}
+
 
