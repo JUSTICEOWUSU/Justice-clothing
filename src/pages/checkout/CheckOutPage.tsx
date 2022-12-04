@@ -1,20 +1,30 @@
 import React from "react";
 import style from "./CheckOutPage.module.css";
-// import CartCheckoutItem from "../../components/Cart/CartCheckoutItem/CartCheckoutItem";
 import CartHeader from "../../components/Cart/CartHeader/CartHeader";
 import CartCheckoutItem from "../../components/Cart/CartCheckoutItem/CartCheckoutItem";
 import CustomButton from "../../components/CustomButton/CustomButton";
+import { useSelector } from "react-redux";
+import {storeType} from "../../REDUX/ReduxStore/ReduxStore"
+
 
 function CheckOutPage() {
+  const { cartItems } = useSelector((state: storeType) => state.cartState);
+  const total = cartItems.reduce((acc,{price,quantity})=>{
+    return acc + (price*quantity)
+  },0)
+
   return (
     <div className={`container-fluid ${style.checkoutPageCont}`}>
       <CartHeader />
-      <CartCheckoutItem name="justice" quantity={1} price={20} imageUrl ='https://i.ibb.co/ZYW3VTp/brown-brim.png'/>
-      <CartCheckoutItem name="justice" quantity={1} price={20} imageUrl ='https://i.ibb.co/ZYW3VTp/brown-brim.png'/>
-      <CartCheckoutItem name="justice" quantity={1} price={20} imageUrl ='https://i.ibb.co/ZYW3VTp/brown-brim.png'/>
+      {
+        cartItems.map(({name,quantity,price,imageUrl,id})=>{
+          return <CartCheckoutItem key={id} name={name} quantity={quantity} price={price} imageUrl ={imageUrl}/>
+
+        })
+      }
 
       <div className={`container ${style.subsContainer}`}>
-        <span className={style.total}>total:$90</span>
+        <span className={style.total}>total: ${total}</span>
       <span className={style.description}>
         {" "}
         *Please pay with the following card details* <br />

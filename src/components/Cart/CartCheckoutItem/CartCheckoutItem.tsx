@@ -3,6 +3,8 @@ import StoreCard from "../../Cards/StoreCard/StoreCard";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { FaTimes } from "react-icons/fa";
 import CheckOutItemPropType from "../../../Types/CartCheckoutItem";
+import {increaseItems,removeItem,decreaseItems} from "../../../REDUX/CartStates/CartReducer"
+import { useDispatch } from "react-redux";
 
 function CartCheckoutItem({
   imageUrl,
@@ -10,6 +12,9 @@ function CartCheckoutItem({
   quantity,
   price,
 }: CheckOutItemPropType): JSX.Element {
+
+  const dispatch = useDispatch()
+
   return (
     <div
       className={`container row overflow-hidden gx-lg-5 ${style.itemContainer}`}
@@ -25,8 +30,8 @@ function CartCheckoutItem({
       <div className={`row col-6 gx-2 overflow-hidden`}>
         <div className={`col-4 ${style.evenStyle}`}>
           <span className={style.itemPrice}>
-            <IoIosArrowBack className={style.itemIcon} /> {quantity}{" "}
-            <IoIosArrowForward className={style.itemIcon} />
+            <IoIosArrowBack className={style.itemIcon} onClick={()=>dispatch(decreaseItems(name))}/> {quantity}{" "}
+            <IoIosArrowForward className={style.itemIcon} onClick={()=>dispatch(increaseItems(name))}/>
           </span>
         </div>
 
@@ -36,7 +41,7 @@ function CartCheckoutItem({
 
         <div className={`col-4 ${style.evenStyle}`}>
           <span className={style.itemDetails}>
-            <FaTimes />
+            <FaTimes onClick={()=>dispatch(removeItem(name))}/>
           </span>
         </div>
       </div>

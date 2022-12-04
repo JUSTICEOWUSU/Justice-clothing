@@ -1,6 +1,7 @@
 .largeNavCont{
     display: flex;
     position: relative;
+    top:0;
     justify-content: space-between;
     align-items: center;
     height: auto;

@@ -6,24 +6,35 @@ import ShopDataType from "../../../DATA/ShopData";
 function ShopSection({
   title,
   items,
-  id,
-  routeName,
+  limit
 }: ShopDataType): JSX.Element {
   return (
     <div className={`container-fluid ${style.shopSectionCont}`}>
       <h1 className={`${style.sectionTitle}`}>{title}</h1>
-      <div className={`container-fluid row g-3 gx-4 overflow-hidden`}>
+      <div className={`container-fluid row  overflow-hidden`}>
         {items.map(({ id, name, imageUrl, price }, index) => {
-          if (index < 4) {
+          if (limit && index < limit) {
             return (
               <StoreCard
                 key={id}
                 name={name}
+                id={id}
                 imageUrl={imageUrl}
-                price={`${price}`}
+                price={price}
                 width={"col-lg-3 col-md-3 col-6"}
               />
             );
+          }else if(!limit){
+            return (
+              <StoreCard
+                key={id}
+                name={name}
+                id={id}
+                imageUrl={imageUrl}
+                price={price}
+                width={"col-lg-3 col-md-3 col-6"}
+              />
+              );
           }
         })}
       </div>

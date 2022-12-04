@@ -1,5 +1,6 @@
 .storeCardCont {
     height: 330px;
+    margin: 0;
 }
 
 .cardItems {
@@ -45,8 +46,12 @@
     justify-content: space-between;
     width: 100%;
     height: 8%;
+    font-weight: 420;
 }
 
+.categorizedCard{
+    margin-bottom: 3%;
+}
 
 .cartCard {
     height: 100%;
@@ -58,16 +63,16 @@
     padding: 2%;
 }
 
-.cartCard,
-.cartBoxCard
-button,
-.itemDescription{
+
+.cartCard button,
+.cartBoxCard button,
+.cartCard .itemDescription,
+.cartBoxCard .itemDescription{
     display: none;
 }
 
 .cartCard,
-.cartBoxCard
-.cardItems{
+.cartBoxCard .cardItems{
     border: none;
     height: 100%;
 }

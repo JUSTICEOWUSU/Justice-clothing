@@ -1,0 +1,17 @@
+.header{
+    margin: 1.2% 10%;
+    text-transform: uppercase;
+    font-size: 2rem;
+
+}
+
+.iconsCont{
+    display: flex;
+    width: 85%;
+    margin: 2% auto;
+    justify-content: space-between;
+}
+
+.icon{
+    font-size: 2rem;
+}

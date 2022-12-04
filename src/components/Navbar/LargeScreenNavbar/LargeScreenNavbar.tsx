@@ -18,7 +18,7 @@ function LargeScreenNavbar(): JSX.Element {
         <CustomNavLink destination={"/"} content={"home"} />
         <CustomNavLink destination={"/shop"} content={"shop"} />
         <CustomNavLink destination={"/login"} content={"login"} />
-        <CustomNavLink destination={"/contact"} content={"contact us"} />
+        {/* <CustomNavLink destination={"/contact"} content={"contact us"} /> */}
         <CartBag screen={"largeScreen"}/>
       </span>
     </div>

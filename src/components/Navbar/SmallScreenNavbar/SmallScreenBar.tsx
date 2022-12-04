@@ -2,7 +2,6 @@ import style from "./SmallScreenBar.module.css"
 import CartBag from "../../Cart/CartBag/CartBag"
 import {HiOutlineBars3} from "react-icons/hi2"
 import {useSelector,useDispatch} from "react-redux"
-
 import {storeType} from "../../../REDUX/ReduxStore/ReduxStore"
 import {GiTireIronCross} from "react-icons/gi"
 import {showOrHideNav} from "../../../REDUX/NavbarStates/NavbarReducer"

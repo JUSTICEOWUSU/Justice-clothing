@@ -10,7 +10,8 @@ interface ShopDataType {
     id: number;
     title: string;
     routeName: string;
-    items:ItemsTypes[]
+    items:ItemsTypes[];
+    limit?:number;
 }
 
 const Hats:ShopDataType = {

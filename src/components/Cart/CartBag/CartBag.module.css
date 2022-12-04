@@ -1,12 +1,13 @@
 .bagContainer {
     display: inline-block;
-    padding: 10px;
+    padding: 5px;
     position: relative;
 }
 
 .bigBag {
-    font-size: 1.6rem;
+    font-size: 2.2rem;
     margin: auto;
+    padding: 5px;
 }
 
 .total {
@@ -23,8 +24,10 @@
 }
 
 .smallBag {
-    font-size: 1.2rem;
+    padding: 5px;
+    font-size: 2rem;
     display: none;
+
 }
 
 .cartItems {
@@ -34,9 +37,9 @@
     height: 250px;
     border: 1px solid #fff;
     bottom: 50%;
-    top: -30%;
+    top: -10%;
     right: 100%;
-    left: -160%;
+    left: -320%;
     z-index: 5;
     color: #fff;
     background: #000;
@@ -50,7 +53,7 @@
 .showCartBox {
     visibility: visible;
     opacity: 1;
-    top: 100%;
+    top: 130%;
     bottom: 0;
 }
 
@@ -91,19 +94,20 @@
 
 .itemName,
 .itemPrice {
-    font-size: 1rem;
+    font-size: 0.8rem;
     display: block;
     text-align: center;
     text-transform: capitalize;
 }
 
 .itemPrice {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 .itemsCont {
     margin: 0;
     padding: 0;
+    height: 40%;
 }
 
 .emptyCart{
@@ -134,7 +138,7 @@
     }
 
     .cartItems {
-        left: -200%;
+        left: -280%;
         width: 150px;
     }
 

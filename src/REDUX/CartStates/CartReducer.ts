@@ -32,7 +32,7 @@ const cartStates = createSlice({
 
         addToCart: (state, { payload }:PayloadAction<{data:CartItem}>) => {
             const { data } = payload;
-            const found = state.cartItems.find(ele => ele["id"] === data["id"]);
+            const found = state.cartItems.find(ele => ele["name"] === data["name"]);
 
             if (found) {
                 const index = state.cartItems.indexOf(found);
@@ -44,17 +44,15 @@ const cartStates = createSlice({
             }
         },
 
-        increaseItems: (state, { payload }:PayloadAction<{data:CartItem}>) => {
-            const { data } = payload;
-            const found = state.cartItems.find(ele => ele["id"] === data["id"]);
+        increaseItems: (state, { payload }:PayloadAction<string>) => {
+            const found = state.cartItems.find(ele => ele["name"] === payload);
             if(!found) return
             const index = state.cartItems.indexOf(found);
             state.cartItems[index].quantity = state.cartItems[index].quantity + 1;
         },
 
-        decreaseItems: (state, { payload }:PayloadAction<{data:CartItem}>) => {
-            const { data } = payload;
-            const found = state.cartItems.find(ele => ele["id"] === data["id"]);
+        decreaseItems: (state, { payload }:PayloadAction<string>) => {
+            const found = state.cartItems.find(ele => ele["name"] === payload);
             if(!found) return
             const index = state.cartItems.indexOf(found);
             if (found.quantity === 1) {
@@ -64,9 +62,8 @@ const cartStates = createSlice({
             }
         },
 
-        removeItem: (state, { payload }:PayloadAction<{data:CartItem}>) => {
-            const { data } = payload;
-            const found = state.cartItems.find(ele => ele["id"] === data["id"]);
+        removeItem: (state, { payload }:PayloadAction<string>) => {
+            const found = state.cartItems.find(ele => ele["name"] === payload);
             if(!found) return
             const index = state.cartItems.indexOf(found);
             state.cartItems.splice(index, 1);
@@ -76,11 +73,12 @@ const cartStates = createSlice({
 })
 
 const cartReducer = cartStates.reducer
-const {increaseItems,removeItem,addToCart,cartBox} = cartStates.actions
+const {increaseItems,removeItem,addToCart,cartBox,decreaseItems} = cartStates.actions
 
 export {
     cartReducer,
     increaseItems,
+    decreaseItems,
     removeItem,
     cartBox,
     addToCart
