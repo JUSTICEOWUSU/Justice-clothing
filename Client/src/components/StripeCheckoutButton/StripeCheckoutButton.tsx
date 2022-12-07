@@ -4,8 +4,7 @@ import {BiCreditCard} from 'react-icons/bi'
 
 const StripeCheckoutButton = ({ price }: { price: number }) => {
   const stripeBill = price * 100;
-  const key =
-    "pk_test_51Lri7JDA0FzgZ7oIEORLHN5I2oHRSJ3VCD4gIqAw4xFRczWTuwhG2J4UzQniRmb12KYe9FFv295aHnUNAQZW1yXC00yQ7hueCZ";
+  const key:string = process.env.REACT_APP_STRIPE_KEY;
   const onToken = (token: {}) => {
     console.log(token);
   };
