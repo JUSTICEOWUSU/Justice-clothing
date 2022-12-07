@@ -1,35 +1,31 @@
-// import StripeCheckout from "react-stripe-checkout";
-import React from 'react'
+import StripeCheckout from "react-stripe-checkout";
+import CustomButton from "../CustomButton/CustomButton";
+import {FcSimCardChip} from "react-icons/fc"
 
-export default function StripeCheckOutButton() {
+const StripeCheckoutButton = ({ price }: { price: number }) => {
+  const stripeBill = price * 100;
+  const key =
+    "pk_test_51Lri7JDA0FzgZ7oIEORLHN5I2oHRSJ3VCD4gIqAw4xFRczWTuwhG2J4UzQniRmb12KYe9FFv295aHnUNAQZW1yXC00yQ7hueCZ";
+  const onToken = (token: {}) => {
+    console.log(token);
+  };
   return (
-    <div>StripeCheckOutButton</div>
-  )
-}
+    <StripeCheckout
+      label="Make Payment"
+      name="JUSTICE Clothing Ltd."
+      description={`Your total is $${price}`}
+      image="https://svgshare.com/i/CUz.svg"
+      billingAddress
+      shippingAddress
+      bitcoin
+      amount={stripeBill}
+      panelLabel="Pay Now"
+      stripeKey={key}
+      token={onToken}
+   >
+     <CustomButton text="Make payment" checkout="checkout" child={<FcSimCardChip/>}/>
+    </StripeCheckout>
+  );
+};
 
-
-// const StripeCheckoutButton = ({price}:{price:number})=>{
-//     const stripeBill = price * 100;
-//     const key = "pk_test_51Lri7JDA0FzgZ7oIEORLHN5I2oHRSJ3VCD4gIqAw4xFRczWTuwhG2J4UzQniRmb12KYe9FFv295aHnUNAQZW1yXC00yQ7hueCZ";
-//     // const onToken = (token: stripe.Token):void =>{
-//     //     console.log(token);
-//     // }
-//     return(
-//         <StripeCheckout
-//             label="Make Payment"
-//             name="JUSTICE Clothing Ltd."
-//             description={`Your total is $${price}`}
-//             image="https://svgshare.com/i/CUz.svg"
-//             billingAddress
-//             shippingAddress
-//             bitcoin
-//             amount={stripeBill}
-//             panelLabel="Pay Now"
-//             stripeKey={key}
-//             // token={onToken}
-
-//         />
-//     )
-// }
-
-// export default StripeCheckoutButton
+export default StripeCheckoutButton;

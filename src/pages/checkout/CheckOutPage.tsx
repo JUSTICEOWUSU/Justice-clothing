@@ -5,6 +5,7 @@ import CartCheckoutItem from "../../components/Cart/CartCheckoutItem/CartCheckou
 import CustomButton from "../../components/CustomButton/CustomButton";
 import { useSelector } from "react-redux";
 import {storeType} from "../../REDUX/ReduxStore/ReduxStore"
+import StripeCheckoutButton from "../../components/StripeCheckoutButton/StripeCheckoutButton";
 
 
 function CheckOutPage() {
@@ -30,7 +31,7 @@ function CheckOutPage() {
         *Please pay with the following card details* <br />
         4000 0566 5566 5556 -Exp:01/23-CVV:123
       </span>
-        <CustomButton text="Make payment" checkout="checkout"/>
+        <StripeCheckoutButton price={total}/>
       </div>
       
     </div>

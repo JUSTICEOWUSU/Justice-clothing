@@ -87,6 +87,10 @@
     .cartCard {
         padding: unset;
     }
+
+    .hideCard{
+        display: none;
+    }
 }
 
 @media all and (width <= 700px){

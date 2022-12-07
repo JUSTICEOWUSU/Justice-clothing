@@ -5,3 +5,29 @@
     text-align: right;
     justify-content: space-between;
 }
+
+.buttonsCont button{
+  text-transform: capitalize;
+  border-radius: 20px;
+}
+
+@media all and (950px >=width >= 700px) {
+  .buttonsCont button{
+    border-radius: 16px;
+  }
+}
+
+
+@media all and (width <= 700px) {
+  .buttonsCont button{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+
+@media all and (width <= 320px) {
+    .buttonsCont button{
+      font-size: 5px;
+    }
+  }

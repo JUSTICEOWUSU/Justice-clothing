@@ -10,10 +10,10 @@
 }
 
 .input {
-    width: auto;
-    padding: 0;
+    min-width: 70%;
+    font-weight: 570;
     margin: 0;
-    padding-left: 3px;
+    padding-left: 7px;
     outline: none;
     border: none;
 }
@@ -30,4 +30,21 @@
 .blur {
     position: absolute;
     bottom: 25px;
+}
+
+@media all and (width <= 700px) {
+    .input {
+        min-width: unset;
+        width: auto;
+    }
+}
+
+@media all and (width <= 320px) {
+    .blur{
+        position: unset;
+    }
+
+    .btnContainer {
+        overflow: hidden;
+    }
 }

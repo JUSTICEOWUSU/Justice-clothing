@@ -2,12 +2,16 @@ import React from "react";
 import style from "./ShopSection.module.css";
 import StoreCard from "../../../components/Cards/StoreCard/StoreCard";
 import ShopDataType from "../../../DATA/ShopData";
+import { useNavigate } from "react-router-dom";
 
 function ShopSection({
   title,
   items,
-  limit
+  limit,
+  routeName
 }: ShopDataType): JSX.Element {
+  const navigate= useNavigate()
+
   return (
     <div className={`container-fluid ${style.shopSectionCont}`}>
       <h1 className={`${style.sectionTitle}`}>{title}</h1>
@@ -21,7 +25,12 @@ function ShopSection({
                 id={id}
                 imageUrl={imageUrl}
                 price={price}
-                width={"col-lg-3 col-md-3 col-6"}
+                cartCard={
+
+                  index === 3 ? "hideCard":""
+
+                }
+                width={"col-lg-3 col-md-4 col-6"}
               />
             );
           }else if(!limit){
@@ -32,13 +41,15 @@ function ShopSection({
                 id={id}
                 imageUrl={imageUrl}
                 price={price}
-                width={"col-lg-3 col-md-3 col-6"}
+                width={"col-lg-3 col-md-4 col-6"}
               />
               );
           }
         })}
       </div>
-      <span className={style.more}>more...</span>
+      <span className={`${style.moreCont} container`} >
+        <span className={style.more} onClick={()=>navigate(routeName)}>more ...</span>
+        </span>
     </div>
   );
 }

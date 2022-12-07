@@ -1,5 +1,5 @@
 
-interface ItemsTypes{
+export interface ItemsTypes{
     id: number;
     name: string;
     imageUrl: string;
@@ -273,5 +273,5 @@ export {
     Women,
     Sneakers,
     Jackets,
-    Hats
+    Hats,
 }

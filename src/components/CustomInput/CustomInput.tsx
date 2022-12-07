@@ -9,6 +9,7 @@ function CustomInput({
   onfocus,
   onchange,
   label,
+  onblur
 }: InputPropsTypes): JSX.Element {
   return (
     <span className={`${style.btnContainer} `}>
@@ -17,6 +18,7 @@ function CustomInput({
         className={style.input}
         type={type}
         onFocus={onfocus}
+        onBlur={onblur}
         value={value}
         onChange={onchange}
       />

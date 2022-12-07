@@ -5,5 +5,6 @@ export default interface InputPropsTypes {
     blur? : string;
     label: string;
     onfocus?: (event: React.FocusEvent<HTMLElement>) => void;
+    onblur?:(event: React.FocusEvent<HTMLElement>) => void;
     onchange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

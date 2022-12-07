@@ -13,7 +13,7 @@ function HeroCard({title, imageUrl, linkUrl, size= "",styles,last=""}:HeroCardPr
     <div className={`container-fluid ${style.heroCardCont} ${styles} ${style[size]} ${style[last]}`}>
         <div className={`${style.cardItems}`}>
             <img src={imageUrl} alt={imageUrl} className={style.img} />
-            <span className={style.cardDescription}>
+            <span className={style.cardDescription} onClick={respondToClick}>
                 <span className={style.descriptionTitle}>{title}</span>
                 <span className={style.descriptionSub}>shop now</span>
             </span>

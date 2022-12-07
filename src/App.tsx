@@ -12,9 +12,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LargeScreenNavbar />}>
           <Route index element={<HomePage />} />
-          <Route path="shop" element={<ShopCategorized />} />
-          <Route path="login" element={<ShopPage />} />
+          <Route path="shop" element={<ShopPage />} />
+          <Route path="login" element={<LoginPage />} />
           <Route path="cart" element={<CheckOutPage />} />
+          <Route path="shop/:category" element={<ShopCategorized />} />
         </Route>
       </Routes>
     </Router>

@@ -4,7 +4,7 @@ import SignUpForm from "../../components/Forms/SignUpForms/SignUpForm"
 
 function LoginPage():JSX.Element {
   return (
-    <div className={`container-fluid row overflow-hidden g-3  gx-5 ${style.loginPageCont}`}>
+    <div className={`container-fluid row overflow-hidden g-3  gx-lg-5 ${style.loginPageCont}`}>
         <div className="col-lg-6">
             <h2 className={style.formTitle}>I already have an account</h2>
             <span className={style.subTitle}>Sign In with email and password</span>
