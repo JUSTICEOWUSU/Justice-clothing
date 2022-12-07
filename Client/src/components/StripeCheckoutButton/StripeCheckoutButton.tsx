@@ -1,6 +1,6 @@
 import StripeCheckout from "react-stripe-checkout";
 import CustomButton from "../CustomButton/CustomButton";
-import {FcSimCardChip} from "react-icons/fc"
+import {BiCreditCard} from 'react-icons/bi'
 
 const StripeCheckoutButton = ({ price }: { price: number }) => {
   const stripeBill = price * 100;
@@ -23,7 +23,7 @@ const StripeCheckoutButton = ({ price }: { price: number }) => {
       stripeKey={key}
       token={onToken}
    >
-     <CustomButton text="Make payment" checkout="checkout" child={<FcSimCardChip/>}/>
+     <CustomButton text="Make payment" checkout="checkout" child={<BiCreditCard/>}/>
     </StripeCheckout>
   );
 };
