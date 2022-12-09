@@ -1,4 +1,4 @@
-import CartCheckoutItem from "../CartCheckoutItem/CartCheckoutItem";
+import React from "react";
 import style from "./CartHeader.module.css";
 
 function CartHeader():JSX.Element {

@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./CartBag.module.css";
+import style from './CartBag.module.css';
 import CartBagBoxProps,{CartBagType} from "../../../Types/CartTypes";
 import { FaOpencart } from "react-icons/fa";
 import { IoCloseOutline } from "react-icons/io5";
@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../CustomButton/CustomButton";
 
-// Component for Items inside the CartBox
+// Component for Individual Items inside the CartBox
 const CartBoxItem = ({ item, quantity, price,imageUrl}: CartBagBoxProps): JSX.Element => {
   return (
     <div className={`container row ${style.itemsCont}`}>

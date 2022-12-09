@@ -1,11 +1,14 @@
 import React from "react";
+
 import StripeCheckout from "react-stripe-checkout";
 import CustomButton from "../CustomButton/CustomButton";
 import {BiCreditCard} from 'react-icons/bi'
-import "vite/client"
 
 
 const StripeCheckoutButton = ({ price }: { price: number }) => {
+  const key:string = import.meta.env.VITE_APP_STRIPE_KEY;
+  console.log("STRIPE KEY:" +key);
+  
   const stripeBill = price * 100;
   const onToken = (token: {}) => {
     console.log(token);
@@ -22,7 +25,7 @@ const StripeCheckoutButton = ({ price }: { price: number }) => {
       bitcoin
       amount={stripeBill}
       panelLabel="Pay Now"
-      stripeKey={import.meta.env.VITE_APP_STRIPE_KEY}
+      stripeKey={key}
       token={onToken}
    >
      <CustomButton text="Make payment" checkout="checkout" child={<BiCreditCard/>} />

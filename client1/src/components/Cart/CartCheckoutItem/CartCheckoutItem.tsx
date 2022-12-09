@@ -1,3 +1,4 @@
+import React from "react";
 import style from "./CartCheckoutItem.module.css";
 import StoreCard from "../../Cards/StoreCard/StoreCard";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
