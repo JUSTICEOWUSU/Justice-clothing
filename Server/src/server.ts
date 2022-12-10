@@ -3,9 +3,13 @@ import app from "./app"
 
 const server = http.createServer(app)
 
-const PORT = process.env.PORT || 7000
+const PORT: string | number = process.env.PORT || 7000
 
-server.listen(PORT,()=>{
-    console.log("listening to port: " + PORT);
-    
-})
+const startServer = async () => {
+    server.listen(PORT, () => {
+        console.log("listening to port: " + PORT);
+    })
+}
+
+// Starting Server
+startServer()
