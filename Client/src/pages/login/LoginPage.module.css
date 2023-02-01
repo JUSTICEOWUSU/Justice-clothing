@@ -1,18 +1,11 @@
 .loginPageCont{
-    margin-top: 3%;
+    margin: auto;
+    text-align: center;
 }
 
-.formTitle{
-    font-size: 1.8rem;
-    font-weight: 700;
-}
 
-.subTitle{
-    display: block;
-    margin-bottom: 20px;
-}
 
-@media all and (950px >= width >= 700px){
+/* @media all and (950px >= width >= 700px){
     .subTitle{
         margin-bottom: 0;
     }
@@ -38,4 +31,4 @@
         margin-bottom: 3%;
         margin-top: 5rem;
     }
-}
+} */

@@ -1,14 +1,11 @@
 import React from "react";
-
 import StripeCheckout from "react-stripe-checkout";
 import CustomButton from "../CustomButton/CustomButton";
-import {BiCreditCard} from 'react-icons/bi'
+import {BiCreditCard} from 'react-icons/bi';
 
 
 const StripeCheckoutButton = ({ price }: { price: number }) => {
-  const key:string = import.meta.env.VITE_APP_STRIPE_KEY;
-  console.log("STRIPE KEY:" +key);
-  
+  const key:string = import.meta.env.VITE_APP_STRIPE_KEY;  
   const stripeBill = price * 100;
   const onToken = (token: {}) => {
     console.log(token);

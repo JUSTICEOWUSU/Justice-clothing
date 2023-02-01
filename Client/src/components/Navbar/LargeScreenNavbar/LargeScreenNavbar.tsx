@@ -6,7 +6,10 @@ import {Outlet} from "react-router-dom"
 import {useSelector} from "react-redux"
 import {storeType} from  "../../../REDUX/ReduxStore/ReduxStore"
 
+// Main LargeScreen navigation bar 
 function LargeScreenNavbar(): JSX.Element {
+  
+  // State Controlling the Visibility of the Large Navigation Bar
   const {showAndHideNav} = useSelector((state:storeType)=>state.navBarState);
 
   return (
@@ -18,7 +21,6 @@ function LargeScreenNavbar(): JSX.Element {
         <CustomNavLink destination={"/"} content={"home"} />
         <CustomNavLink destination={"/shop"} content={"shop"} />
         <CustomNavLink destination={"/login"} content={"login"} />
-        {/* <CustomNavLink destination={"/contact"} content={"contact us"} /> */}
         <CartBag screen={"largeScreen"}/>
       </span>
     </div>

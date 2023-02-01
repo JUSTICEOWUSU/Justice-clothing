@@ -8,6 +8,12 @@
   background-color: #000;
 }
 
+.btn a{
+  display: none;
+  text-decoration: none;
+  color: #fff;
+}
+
 .btn:hover {
   filter: brightness(120%);
 }
@@ -35,6 +41,13 @@
   padding: 0.5%;
   border-radius: 5px;
   text-transform: capitalize;
+}
+.link span{
+  display: none;
+}
+
+.link a{
+  display: unset;
 }
 
 @media all and (width<=950px) {

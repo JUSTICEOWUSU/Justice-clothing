@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 export default interface CustomButtonProps{
     child?:ReactNode;
@@ -6,5 +6,7 @@ export default interface CustomButtonProps{
     text:string;
     btnStyle?:React.CSSProperties;
     checkout?:string;
+    to?:string;
+    linkStyle?:React.CSSProperties;
     onclick?:(event: React.MouseEvent<HTMLButtonElement>) => void;
-}
+};

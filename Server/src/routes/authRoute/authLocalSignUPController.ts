@@ -5,6 +5,7 @@ type SignupData = {
     email:string;
     password:string;
 }
+
 const httpPostSignUp =async (req:Request,res:Response) => {
     const signUpData:SignupData = req.body;
 

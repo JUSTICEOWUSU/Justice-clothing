@@ -39,8 +39,8 @@ function CartBag({screen = ""}: CartBagType): JSX.Element {
   const { cartItems } = useSelector((state: storeType) => state.cartState);
   const navigate = useNavigate();
   const total = cartItems.reduce((acc,{quantity})=>{
-      return acc+quantity
-  },0)
+      return acc + quantity
+  },0);
 
   // Function responding to the cart bag clicks
   const respondToBagClick = () => {
