@@ -1,4 +1,4 @@
- import {connect,connection} from  "mongoose";
+ import  {connect,connection} from  "mongoose";
 
  connection.once("open",()=>{
     console.log("Successfully connected to mongoDb database");

@@ -6,6 +6,6 @@
 
 @media  all and (width <= 700px) {
     .homePageCont{
-        margin-top: 5rem;
+        margin-top: 1rem;
     }
 }

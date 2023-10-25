@@ -1,21 +1,20 @@
-import https from "https"
-import fs from "fs"
+import http from "http"
 import app from "./app"
-// import connectToDatabase from "./database/DBConnection/mongoDBConnection"
+import connectToDatabase from "./database/DBConnection/mongoDBConnection"
+import loadStoreData from "./MongoDB_DATA/MongoStoreData";
+import loadCategoryData from "./MongoDB_DATA/MongoCategoriesData";
 import {config} from "dotenv";
 config();
 
 
-
-const server = https.createServer({
-    key:fs.readFileSync("key.pem"),
-    cert:fs.readFileSync("cert.pem")
-},app)
+const server =http.createServer(app)
 
 const PORT: string | number = process.env.PORT || 7000
 
 const startServer = async () => {    
-    // await connectToDatabase();
+    await connectToDatabase();
+    await loadCategoryData();
+    await loadStoreData();
     server.listen(PORT, () => {
         console.log("listening to port: " + PORT);
     })

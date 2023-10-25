@@ -1,16 +1,18 @@
 import path from 'path';
+import cors from 'cors'
 import helmet from 'helmet';
 import express from 'express';
 import passport from 'passport';
 import { config } from 'dotenv';
 import session from 'cookie-session';
-import Google  from 'passport-google-oauth20';
+import Google from 'passport-google-oauth20';
 import Facebook from 'passport-facebook';
 import shopRouter from './routes/shopRoute/shopRouter';
 import authRouter from './routes/authRoute/authRouter';
 import checkoutRouter from './routes/paymentRoute/checkoutRouter';
 import categoriesRouter from './routes/categoryRoute/categoriesRoute';
 config();
+import users from './database/DBModels/userModel';
 
 type SessionUser = {
     [index: string]: boolean | number | object | string;
@@ -30,15 +32,51 @@ const FACEBOOK_KEYS = {
 
 const app = express();
 
-// Passport Configuration
+// PASSPORT CONFIGURATIONS
+
+// REGISTER USER WITH GOOGLE
 passport.use(new Google.Strategy(GOOGLE_KEYS, (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
-    done(null, profile);
+    const userExist = users.findOne({
+        id: profile.id
+    })
+
+    if (!userExist) {
+        const newUser = new users({
+            username: profile.displayName,
+            id: profile.id,
+            email: profile.emails
+        });
+
+        newUser.save((error) => {
+            if (error) {
+                return done(error);
+            }
+        })
+    }
+    return done(null, profile);
 }));
 
+// REGISTER USER WITH FACEBOOK
 passport.use(new Facebook.Strategy(FACEBOOK_KEYS, (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
-    done(null, profile);
+    const userExist = users.findOne({
+        id: profile.id
+    })
+
+    if (!userExist) {
+        const newUser = new users({
+            username: profile.displayName,
+            id: profile.id,
+            email: profile.emails
+        });
+
+        newUser.save((error) => {
+            if (error) {
+                return done(error);
+            }
+        })
+    }
+    return done(null, profile);
+
 }));
 
 passport.serializeUser((user, done) => {
@@ -53,12 +91,18 @@ passport.deserializeUser((user: number, done) => {
 });
 
 // App Configuration
-app.use(helmet.contentSecurityPolicy({
-    directives:{
-        imgSrc:["'self'","data:", "*"],
-        defaultSrc:["'self'"],
-        scriptSrc:["'self'","https://checkout.stripe.com","https://js.stripe.com","https://m.stripe.network"],
-    }
+// app.use(helmet.contentSecurityPolicy({
+//     directives: {
+//         imgSrc: ["'self'", "data:", "*"],
+//         defaultSrc: ["'self'"],
+//         connectSrc: ["'self'", "data:", "https://checkout.stripe.com", "https://js.stripe.com", "https://m.stripe.network", "https://www.google-analytics.com", "https://accounts.google.com"],
+//         scriptSrc: ["'self'", "data:", "https://checkout.stripe.com", "https://js.stripe.com", "https://m.stripe.network", "https://www.google-analytics.com", "https://accounts.google.com"],
+
+//     }
+// }))
+
+app.use(cors({
+    origin:"*"
 }))
 
 app.use(session({
@@ -73,7 +117,7 @@ app.use(express.json());
 app.use('/shopData', shopRouter);
 app.use('/categories', categoriesRouter);
 app.use('/checkout', checkoutRouter);
-app.use("/auth",authRouter);
+app.use("/auth", authRouter);
 
 app.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
 app.get('/*', (req, res) => {

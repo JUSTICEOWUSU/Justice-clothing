@@ -1,19 +1,13 @@
 import style from "./ShopCategorized.module.css";
 import StoreCard from "../../components/Cards/StoreCard/StoreCard";
+import { useGetStoreDataQuery } from "../../REDUX/API_Queries/E_CommerceAPI";
 import { IoArrowForwardOutline, IoArrowBackOutline } from "react-icons/io5";
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ShopDataType, {
-  ItemsTypes,
-  Mens,
-  Women,
-  Hats,
-  Jackets,
-  Sneakers,
-} from "../../DATA/ShopData";
+import { ItemsTypes } from "../../Types/ShopDataTypes";
 import { useParams } from "react-router-dom";
 
-let PageSize = 12;
+let PageSize = 16;
 
 //Functions controlling the visibility of the arrow icons
 function checkPagination(
@@ -23,19 +17,27 @@ function checkPagination(
   return allData[allData.length - 1].name == someData[someData.length - 1].name;
 }
 
+// MAIN FUNCTIONAL COMPONENT
 function ShopCategorized(): JSX.Element {
+  const {data} = useGetStoreDataQuery("shopData");
   const [currentPage, setCurrentPage] = useState(1);
   const { category } = useParams();
   const navigate = useNavigate();
-  const data: ShopDataType[] = [Mens, Women, Hats, Jackets, Sneakers];
-  const { items, title } = data.filter(
-    (data) => data.routeName === category
-  )[0];
+
+  let MainUsedItemsData:ItemsTypes[] = []
+  let MainTitle:string = ''
+  if(data){
+    const { items, title } = data['categories'].filter(
+      (data) => data.routeName === category
+    )[0];
+    MainUsedItemsData = items
+    MainTitle = title
+  }
 
   const currentTableData = useMemo(() => {
     const firstPageIndex = (currentPage - 1) * PageSize;
     const lastPageIndex = firstPageIndex + PageSize;
-    return items.slice(firstPageIndex, lastPageIndex);
+    return MainUsedItemsData.slice(firstPageIndex, lastPageIndex);
   }, [currentPage]);
 
   const respondToBackArrow = ():void => {
@@ -54,7 +56,7 @@ function ShopCategorized(): JSX.Element {
 
   return (
     <div className={style.Cont}>
-      <h1 className={style.header}>{title}</h1>
+      <h1 className={style.header}>{MainTitle}</h1>
       <div className={`container row overflow-hidden m-auto gx-4`}>
         {currentTableData.map(({ price, imageUrl, id, name }) => {
           return (
@@ -75,7 +77,7 @@ function ShopCategorized(): JSX.Element {
           className={style.icon}
           onClick={respondToBackArrow}
         />
-        {!checkPagination(items, currentTableData) && (
+        {!checkPagination(MainUsedItemsData, currentTableData) && (
           <IoArrowForwardOutline
             className={style.icon}
             onClick={respondToForwardArrow}

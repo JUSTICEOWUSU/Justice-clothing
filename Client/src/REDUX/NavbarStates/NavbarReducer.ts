@@ -1,10 +1,12 @@
 import {createSlice,PayloadAction} from "@reduxjs/toolkit"
 
-type InitialState = {
+export type InitialState = {
     showAndHideNav:string
+    showAndHideSearch:string
 }
 const initialState:InitialState = {
-    showAndHideNav:""
+    showAndHideNav:"",
+    showAndHideSearch:"",
 }
 
 const navbarState = createSlice({
@@ -13,13 +15,21 @@ const navbarState = createSlice({
     reducers:{
         showOrHideNav:(state,{payload}:PayloadAction<string>)=>{
             state.showAndHideNav = payload
+        },
+        showOrHideSearch:(state)=>{
+            if(state.showAndHideSearch === ""){
+                state.showAndHideSearch = "showAndHideSearch"
+            }else{
+                state.showAndHideSearch = ""
+            }
         }
     }
 });
 
 const navbarReducer = navbarState.reducer;
-const {showOrHideNav} = navbarState.actions;
+const {showOrHideNav,showOrHideSearch} = navbarState.actions;
 export {
     navbarReducer,
-    showOrHideNav
+    showOrHideNav,
+    showOrHideSearch
 }

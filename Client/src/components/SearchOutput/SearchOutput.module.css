@@ -1,0 +1,225 @@
+.containerDiv{
+    display: block;
+    margin-top: 1rem;
+    padding: 0 100px;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.productCont{
+    margin:auto 15px;
+    margin-bottom: 30px;
+    padding: 0;
+}
+
+.title {
+    display: block;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 5px;
+}
+
+ .smallScreen{
+    display: none;
+    font-size: 30px;
+    font-weight: bold;
+ }
+
+.imgSpan{
+    height: 400px;
+    display: block;
+    padding: 0;
+    position: relative;
+}
+
+.img {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid gray;
+    object-fit: cover;
+}
+
+.descriptionCont{
+    padding: auto 20px;
+    padding-left: 40px;
+}
+
+.description{
+    margin: auto;
+}
+
+.EmptyCont{
+    width:100%;
+    text-align: center;
+    margin:auto;
+    margin-top:10vh;
+    margin-bottom: 2vh;
+    position:relative;
+}
+
+.EmptyMessage p{
+    margin:auto;
+    text-align: center;
+    margin-top:7vh;
+    font-size:1.4rem;
+    font-weight:bold;
+    z-index: 20;
+    text-transform:capitalize;
+}
+
+.cart{
+    margin: auto;
+    margin-top: 10px;
+    font-size: 7rem;
+}
+
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+
+  }
+}
+
+.ItemsToScroll{
+    bottom: 0;
+    height:30vh;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ItemsToScroll:hover .ItemsToScrollCont{
+    animation-play-state: paused;
+}
+
+.CustomEmptyCont {
+    text-align: left;
+    height: unset;
+}
+
+.CTitle{
+    text-align: left;
+    text-transform: initial;
+    font-size:1.1rem;
+    margin-bottom: 35px;
+    font-weight:bold;
+
+}
+
+.ItemsToScroll::before,
+.ItemsToScroll::after{
+    content: "";
+    height: 100%;
+    width: 10px;
+   background: linear-gradient(to left, rgba(255, 255, 255, 0),#fff);
+   z-index: 4;
+   position: absolute;
+}
+
+.ItemsToScroll::after{
+    right: 0;
+       background: linear-gradient(to right, rgba(255, 255, 255, 0),#fff);
+
+}
+
+.GenCont{
+    height: 100%;
+    display: inline-block;
+    
+}
+
+.scrollItem{
+    position:relative;
+margin: auto 4px;
+border-radius: 2px;
+    height:100%;
+    width:250px;
+    flex-shrink: 0;
+    display: block;
+    border:1px solid rgb(233, 230, 230);
+}
+
+.scrollItem p{
+    z-index: 50;
+}
+
+.scrollItemTitle{
+    display:flex;
+    align-items: center;
+    justify-content:center;
+    position: absolute;
+    width: 70%;
+    top: 45%;
+    left: 20%;
+    color:#fff;
+    text-transform: capitalize;
+    font-size: 1.3rem;
+}
+
+.ItemsToScrollCont{
+    animation: scroll 30s linear infinite;
+    position: relative;
+    display: flex;
+    width:100%;
+    height: 100%;
+}
+
+.blendCover{
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.scrollItem img{
+    width:100%;
+    height:100%
+}
+
+@media all and (width<=900px) {
+    .title{
+        display: none;
+    }
+
+    .description{
+        margin: unset;
+        display: block;
+    }
+
+    .smallScreen{
+        display: block;
+    }
+
+    .descriptionCont{
+        margin-top: 20px;
+        padding: 0;
+    }
+    
+    .imgSpan{
+        overflow: hidden;
+    }
+
+    .productCont{
+        margin:auto 1px;
+        margin-bottom: 100px;
+    } 
+
+}
+
+@media all and (width<=700px) {
+
+    .containerDiv{
+        margin-top: 5rem;
+        padding: 0 20px;
+    }
+    
+
+}

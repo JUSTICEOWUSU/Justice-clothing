@@ -6,6 +6,17 @@
     padding: 0.1% 5%;
 }
 
+.iconSpan{
+    margin: auto;
+    text-align: center;
+}
+
+.searchIcon {
+    margin-top: 5px;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
 .togglesCont{
     display: flex;
     align-items: center;
@@ -26,6 +37,5 @@
         z-index: 10;
         background: #fff;
         border-bottom: 1px solid #000;
-
     }
 }

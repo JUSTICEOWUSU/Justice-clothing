@@ -5,6 +5,7 @@ import HomePage from "./pages/home/HomePage";
 import ShopPage from "./pages/shop/ShopPage";
 import LoginPage from "./pages/login/LoginPage";
 import CheckOutPage from "./pages/checkout/CheckOutPage";
+import SearchOutput from "./components/SearchOutput/SearchOutput";
 import ShopCategorized from "./pages/categorizedShop/ShopCategorized";
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LargeScreenNavbar />}>
           <Route index element={<HomePage />} />
+          <Route path="shop/search" element={<SearchOutput />} />
           <Route path="shop" element={<ShopPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="cart" element={<CheckOutPage />} />

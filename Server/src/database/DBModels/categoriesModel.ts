@@ -28,5 +28,5 @@ const itemsCategorySchema = new Schema<ItemsCategory>({
     }
 })
 
-const ItemsCategories  = model<ItemsCategory>("itemsCategory",itemsCategorySchema);
-export default  ItemsCategories;
+const CategoryItems  = model<ItemsCategory>("StoreCategory",itemsCategorySchema);
+export default  CategoryItems;

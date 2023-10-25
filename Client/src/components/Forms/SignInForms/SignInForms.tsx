@@ -31,8 +31,6 @@ const FStyle:React.CSSProperties = {
 // Main Sign In form
 function SignInForms(): JSX.Element {
   const [blur, setBlur] = useState("");
-
-
   const onFocus = () => {
     setBlur("blur");
   };
@@ -53,6 +51,7 @@ function SignInForms(): JSX.Element {
           checkout="link"
           child={<FcGoogle />}
           to={"/auth/google"}
+          // onclick={resToGoogle}
         />
         <CustomButton
           text={"sign in with facebook"}

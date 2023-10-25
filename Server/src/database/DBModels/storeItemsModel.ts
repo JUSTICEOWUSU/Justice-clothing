@@ -54,6 +54,5 @@ const storeItemModel = new Schema<ShopDataType>({
     },
 })
 
-const storeItems = model("storeItem", storeItemModel)
-
+const storeItems = model("StoreItem", storeItemModel)
 export default storeItems
