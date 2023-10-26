@@ -1,6 +1,5 @@
 import path from 'path';
 import cors from 'cors'
-import helmet from 'helmet';
 import express from 'express';
 import passport from 'passport';
 import { config } from 'dotenv';
@@ -21,16 +20,18 @@ type SessionUser = {
 const GOOGLE_KEYS = {
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_SECRET_KEY as string,
-    callbackURL: 'https://localhost:7000/auth/google/callback',
+    callbackURL: 'http://localhost:7000/auth/google/callback',
 }
 
 const FACEBOOK_KEYS = {
     clientID: process.env.FACEBOOK_CLIENT_ID as string,
     clientSecret: process.env.FACEBOOK_SECRET_KEY as string,
-    callbackURL: 'https://localhost:7000/auth/facebook/callback',
+    callbackURL: 'http://localhost:7000/auth/facebook/callback',
 }
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // PASSPORT CONFIGURATIONS
 
@@ -49,7 +50,7 @@ passport.use(new Google.Strategy(GOOGLE_KEYS, (accessToken, refreshToken, profil
 
         newUser.save((error) => {
             if (error) {
-                return done(error);
+                return done(error.message);
             }
         })
     }
@@ -114,14 +115,16 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.json());
+
+
 app.use('/shopData', shopRouter);
 app.use('/categories', categoriesRouter);
 app.use('/checkout', checkoutRouter);
 app.use("/auth", authRouter);
-
-app.use(express.static(path.join(__dirname, '..', '..', 'client', 'dist')));
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', '..', 'client', 'dist', 'index.html'));
+app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+
 
 export default app;

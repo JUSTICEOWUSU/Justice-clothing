@@ -1,8 +1,24 @@
 import React from "react";
 import style from "./ShopSection.module.css";
 import StoreCard from "../../../components/Cards/StoreCard/StoreCard";
-import ShopDataType from "../../../DATA/ShopData";
 import { useNavigate } from "react-router-dom";
+
+
+export interface ItemsTypes {
+  id: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+}
+
+interface ShopDataType {
+  id: number;
+  title: string;
+  routeName: string;
+  items: ItemsTypes[];
+  limit?: number;
+}
+
 
 function ShopSection({
   title,

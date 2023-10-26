@@ -1,8 +1,11 @@
 import React from "react";
+import {useSelector} from "react-redux"
 import style from "./SearchOutput.module.css";
 import { useGetStoreDataQuery } from "../../REDUX/API_Queries/E_CommerceAPI";
 import LoadingSpinner from "../LoadingSpinal/LoadingSpinner";
 import { FaOpencart } from "react-icons/fa";
+import { storeType } from "../../REDUX/ReduxStore/ReduxStore";
+
 
 
 export interface ItemsTypes {
@@ -93,7 +96,7 @@ export function ContinousCaurosel(): JSX.Element{
 
 function SearchOutput(): JSX.Element {
   const SearchData: ItemsTypes[] = [];
-
+  const {searchedValue} = useSelector((state:storeType)=>state.searchBarState)
   const { data, isLoading } = useGetStoreDataQuery("shopData");
   if (data) {
     SearchData.push(...data["categories"][0].items);
@@ -110,36 +113,36 @@ function SearchOutput(): JSX.Element {
       {isLoading && <LoadingSpinner />}
       {
         data && SearchData.length !== 0
-          ? SearchData.filter((items) => items.name.includes("jackethjhj")).map(
-              (item) => (
-                <div className={`row  ${style.productCont} `} key={item.name}>
-                  <span className={`${style.imgSpan} col-lg-7 col-12`}>
-                    <span className={`${style.smallScreen}`}>{item.name}</span>
-                    <img
-                      src={`${item.imageUrl}`}
-                      alt="clothings"
-                      className={`${style.img}`}
-                    />
-                  </span>
-                  <div className={`${style.descriptionCont} col-lg-5 col-12`}>
-                    <span className={`${style.title}`}>{item.name}</span>
-                    <div className={`${style.description}`}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Ducimus ut est consequatur animi, placeat omnis possimus
-                      sapiente! Rem quam ab at dolore. Deserunt est ducimus
-                      perferendis reiciendis possimus obcaecati alias .
-                    </div>
+          ? SearchData.filter((items) =>
+              items.name.includes(`${searchedValue}`)
+            ).map((item) => (
+              <div className={`row  ${style.productCont} `} key={item.name}>
+                <span className={`${style.imgSpan} col-lg-7 col-12`}>
+                  <span className={`${style.smallScreen}`}>{item.name}</span>
+                  <img
+                    src={`${item.imageUrl}`}
+                    alt="clothings"
+                    className={`${style.img}`}
+                  />
+                </span>
+                <div className={`${style.descriptionCont} col-lg-5 col-12`}>
+                  <span className={`${style.title}`}>{item.name}</span>
+                  <div className={`${style.description}`}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Ducimus ut est consequatur animi, placeat omnis possimus
+                    sapiente! Rem quam ab at dolore. Deserunt est ducimus
+                    perferendis reiciendis possimus obcaecati alias .
                   </div>
                 </div>
-              )
-            )
+              </div>
+            ))
           : ""
         /**/
       }
 
       {data &&
-      SearchData.filter((items) => items.name.includes("jacketyui")).length ===
-        0 ? (
+      SearchData.filter((items) => items.name.includes(`${searchedValue}`))
+        .length === 0 ? (
         <div className={`${style.EmptyCont}`}>
           <span className={`${style.EmptyMessage}`}>
             <p>Not available yet</p>
@@ -193,7 +196,7 @@ function SearchOutput(): JSX.Element {
         ""
       )}
 
-      <ContinousCaurosel/>
+      <ContinousCaurosel />
     </div>
   );
 }
