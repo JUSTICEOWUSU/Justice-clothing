@@ -8,11 +8,10 @@ const authRouter = Router();
 authRouter.get("/facebook", facebookSignUpController);
 authRouter.get("/facebook/callback", facebookCallBackController);
 
-
 authRouter.get("/google", googleSignUpController);
 authRouter.get("/google/callback", googleCallBackController);
 
-authRouter.get("/checkUserAuthentication",checkUserAuthController)
+authRouter.post("/checkUserAuthentication",checkUserAuthController)
 
 export default authRouter
 

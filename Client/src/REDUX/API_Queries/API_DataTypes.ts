@@ -32,5 +32,6 @@ export type StoreItems = {
 }
 
 export type IsAuthenticated = {
+    token:string,
     isAuthenticated:boolean
 }

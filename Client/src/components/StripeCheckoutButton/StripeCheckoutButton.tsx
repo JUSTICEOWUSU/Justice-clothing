@@ -1,7 +1,8 @@
 import React from "react";
 import StripeCheckout from "react-stripe-checkout";
 import CustomButton from "../CustomButton/CustomButton";
-import {BiCreditCard} from 'react-icons/bi';
+import { BiCreditCard } from 'react-icons/bi';
+
 
 
 const StripeCheckoutButton = ({ price }: { price: number }) => {
@@ -10,6 +11,7 @@ const StripeCheckoutButton = ({ price }: { price: number }) => {
   const onToken = (token: {}) => {
     console.log(token);
   };
+
 
   return (
     <StripeCheckout

@@ -2,21 +2,41 @@ import style from "./StoreCard.module.css";
 import StoreCardProps from "../../../Types/StoreCardTypes";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../REDUX/CartStates/CartReducer";
+import { useGetAuthStateMutation } from "../../../REDUX/API_Queries/E_CommerceAPI";
+import Cookie from "js-cookie";
 
 type click = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
 function StoreCard({
   imageUrl,
-  name="",
-  price=0,
+  name = "",
+  price = 0,
   width,
-  id=0,
+  id = 0,
   cartCard = "",
 }: StoreCardProps) {
   const dispatch = useDispatch();
 
-  const respondToButtonClick: click = () => {
-    dispatch(
+  const [mutate, { data, error }] = useGetAuthStateMutation();
+
+  const respondToButtonClick: click =  () => {
+    const jwt = Cookie.get("jwt");
+    if (jwt) {
+      mutate(jwt)
+    } else {
+      if (data) {
+            Cookie.set("jwt", JSON.stringify(data), {
+              secure: true,
+              sameSite: "strict",
+              expires: 7,
+            });
+      } else {
+              mutate("");
+      } 
+    }
+    
+
+    return dispatch(
       addToCart({
         data: {
           id: id,
@@ -35,7 +55,9 @@ function StoreCard({
     >
       <div className={`${style.cardItems}`}>
         <img src={imageUrl} alt={imageUrl} className={style.img} />
-        <button className={style.cardButton} onClick={respondToButtonClick}>add to cart</button>
+        <button className={style.cardButton} onClick={respondToButtonClick}>
+          add to cart
+        </button>
       </div>
 
       <span className={style.itemDescription}>

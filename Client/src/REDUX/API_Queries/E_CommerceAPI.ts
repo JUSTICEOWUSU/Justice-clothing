@@ -20,19 +20,21 @@ export const  E_CommerceApi = createApi({
             })
         }),
 
-        getAuthState:build.query<IsAuthenticated,string>({
-            query:()=>({
-                url:`checkUserAuthentication`
+        getAuthState:build.mutation<IsAuthenticated,string>({
+            query:(token)=>({
+                url:`auth/checkUserAuthentication`,
+                method: 'POST',
+                body:JSON.stringify({token:token})               
             })
         }),
 
     })
 })
 
-const {useGetHomeDataQuery,useGetStoreDataQuery,useGetAuthStateQuery} = E_CommerceApi
+const {useGetHomeDataQuery,useGetStoreDataQuery,useGetAuthStateMutation} = E_CommerceApi
 
 export {
     useGetHomeDataQuery,
     useGetStoreDataQuery,
-    useGetAuthStateQuery
+    useGetAuthStateMutation
 }

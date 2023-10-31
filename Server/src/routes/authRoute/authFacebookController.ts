@@ -5,7 +5,6 @@ const facebookSignUpController = passport.authenticate('facebook', {
 });
 
 const facebookCallBackController = passport.authenticate('facebook', {
-    successRedirect: '/',
     failureRedirect: '/login',
 });
 

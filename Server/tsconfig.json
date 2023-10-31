@@ -13,5 +13,5 @@
     "rootDir": "src",
     "noImplicitAny": true,
     "resolveJsonModule": true
-  }
+  },
 }

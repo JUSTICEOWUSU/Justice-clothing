@@ -120,7 +120,7 @@ app.use(express.json());
 app.use('/shopData', shopRouter);
 app.use('/categories', categoriesRouter);
 app.use('/checkout', checkoutRouter);
-app.use("/auth", authRouter);
+app.use('/auth', authRouter);
 app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
