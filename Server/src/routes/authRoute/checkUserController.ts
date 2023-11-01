@@ -1,24 +1,45 @@
-import { Request, Response } from 'express'
-import {JwtPayload} from   'jsonwebtoken'
+import { Request, Response } from 'express';
+import { config } from 'dotenv';
+import jwt from 'jsonwebtoken';
 
-import jwt from "jsonwebtoken"
+config();
 
-const checkUserAuthController = async (req: Request, res: Response) => {
-        const jwtSecret: string = "quabinah81";
+const checkUserAuthController = (req: Request, res: Response) => {
+  const jwtSecret = process.env.JWT_KEY as string;
+  if (req.body.url && req.session) {
+    req.session.url = req.body.url
+  }
+  if (req.user) {
+    
+    try {
+      // Verify the JWT token and get the decoded information
+      const decodeId = jwt.verify(req.body.token, jwtSecret) as {
+        id: number;
+        iat: number;
+        exp: number;
+      };
 
-    const decodeId = jwt.verify(req.body.token,jwtSecret) as { id: number, isAuthenticated: boolean, iat: number, exp: number }
-
-    if (req.isAuthenticated() && req.user || req.user === decodeId.id) {
-        const payload = { id: req.user, isAuthenticated: true }
-        const token = jwt.sign(payload, jwtSecret, {expiresIn:"24hr"});
+      // Check if the user is authenticated and the decoded ID matches the user's ID
+      if (req.user && decodeId && req.user === decodeId.id) {
+        const payload = { id: req.user };
+        const token = jwt.sign(payload, jwtSecret, { expiresIn: '24h' });
         return res
-            .status(200)
-            .json({ token:token })
+          .status(200)
+          .json({ token: token, isAuthenticated: true });
+      }
+    } catch (error) {
+      const payload = { id: req.user };
+      const token = jwt.sign(payload, jwtSecret, { expiresIn: '24h' });
+      return res
+        .status(200)
+        .json({ token: token, isAuthenticated: true });
+
     }
-        console.log("auth asked")
+  }
 
+  // If the user is not authenticated or JWT verification failed, redirect to the login page
+      return res.json({isAuthenticated:false})
 
-    res.redirect("/login")
-}
+};
 
-export default checkUserAuthController
+export default checkUserAuthController;

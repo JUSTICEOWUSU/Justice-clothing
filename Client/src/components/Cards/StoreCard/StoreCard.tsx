@@ -1,11 +1,36 @@
 import style from "./StoreCard.module.css";
 import StoreCardProps from "../../../Types/StoreCardTypes";
 import { useDispatch } from "react-redux";
+import { useNavigate,useLocation } from "react-router-dom";
 import { addToCart } from "../../../REDUX/CartStates/CartReducer";
-import { useGetAuthStateMutation } from "../../../REDUX/API_Queries/E_CommerceAPI";
+// import { useGetAuthStateMutation } from "../../../REDUX/API_Queries/E_CommerceAPI";
 import Cookie from "js-cookie";
 
 type click = (event: React.MouseEvent<HTMLButtonElement>) => void;
+
+export async function checkAndAuthenticateUser(data: string,url?:string) {
+
+  try {
+   const respond = await fetch(
+     "/auth/checkUserAuthentication",
+     {
+       method: "POST",
+       redirect:"follow",
+       headers: {
+         "content-type": "application/json",
+       },
+       body: JSON.stringify({ token: data,url }),
+     }
+   );
+    
+    if (!respond.ok) {
+      throw new Error( `An Error ocurred Status:${respond.status}`)
+    }
+    return respond.json()
+  }catch(err){
+    console.log(err)
+  }
+}
 
 function StoreCard({
   imageUrl,
@@ -15,25 +40,29 @@ function StoreCard({
   id = 0,
   cartCard = "",
 }: StoreCardProps) {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation().pathname.split("/")
+  const loc= location[location.length-1]
+  
 
-  const [mutate, { data, error }] = useGetAuthStateMutation();
 
-  const respondToButtonClick: click =  () => {
+  const  respondToButtonClick: click =  async() => {
     const jwt = Cookie.get("jwt");
     if (jwt) {
-      mutate(jwt)
+      const respond = await checkAndAuthenticateUser(jwt)
+      Cookie.set("jwt", respond, {
+        secure: true,
+        sameSite: "strict",
+        expires: 7,
+      });
     } else {
-      if (data) {
-            Cookie.set("jwt", JSON.stringify(data), {
-              secure: true,
-              sameSite: "strict",
-              expires: 7,
-            });
-      } else {
-              mutate("");
+     
+      const respond = await checkAndAuthenticateUser("unAuthenticated",loc);
+      if (!respond.isAuthenticated) {
+        return navigate("/login")
+      }
       } 
-    }
     
 
     return dispatch(

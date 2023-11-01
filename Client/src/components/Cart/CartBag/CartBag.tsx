@@ -10,6 +10,8 @@ import { cartBox } from "../../../REDUX/CartStates/CartReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CustomButton from "../../CustomButton/CustomButton";
+import {checkAndAuthenticateUser} from "../../Cards/StoreCard/StoreCard"
+import Cookie from 'js-cookie';
 
 // Component for Individual Items inside the CartBox
 const CartBoxItem = ({ item, quantity, price,imageUrl}: CartBagBoxProps): JSX.Element => {
@@ -49,7 +51,21 @@ function CartBag({screen = ""}: CartBagType): JSX.Element {
   };
 
   // Function responding to the cartBoxButton clicks
-  const respondToButtonClick = () => {
+  const respondToButtonClick = async() => {
+    const jwt = Cookie.get("jwt");
+    if (jwt) {
+      const respond = await checkAndAuthenticateUser(jwt);
+      Cookie.set("jwt", respond, {
+        secure: true,
+        sameSite: "strict",
+        expires: 7,
+      });
+    } else {
+      const respond = await checkAndAuthenticateUser("unAuthenticated");
+      if (!respond.isAuthenticated) {
+        return navigate("/login");
+      }
+    } 
     if (cartClass) dispatch(cartBox(""));
     return navigate("cart");
   };
