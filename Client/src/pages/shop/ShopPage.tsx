@@ -10,14 +10,14 @@ function ShopPage(): JSX.Element {
     <div className={`container mx-auto ${style.shopPageCont}`}>
       {data ? (
         <>
-          <ShopSection {...data['categories'][0]} limit={4} />
-          <ShopSection {...data['categories'][1]} limit={4} />
-          <ShopSection {...data['categories'][2]} limit={4} />
-          <ShopSection {...data['categories'][3]} limit={4} />
-          <ShopSection {...data['categories'][4]} limit={4} />
+          <ShopSection {...data["categories"][2]} limit={4} />
+          <ShopSection {...data["categories"][4]} limit={4} />
+          <ShopSection {...data["categories"][1]} limit={4} />
+          <ShopSection {...data["categories"][3]} limit={4} />
+          <ShopSection {...data["categories"][0]} limit={4} />
         </>
       ) : (
-        <LoadingSpinner/>
+        <LoadingSpinner />
       )}
     </div>
   );

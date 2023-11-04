@@ -5,8 +5,7 @@ const googleSignUpController = passport.authenticate('google', {
 });
 
 const googleCallBackController = passport.authenticate('google', {
-    failureRedirect: '/login',
-    successRedirect:'/'
+    failureRedirect:"/login"
 });
 
 export {

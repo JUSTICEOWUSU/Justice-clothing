@@ -2,8 +2,8 @@ import React from "react";
 import style from "./SignInForms.module.css";
 import CustomButton from "../../CustomButton/CustomButton";
 import { CiFacebook } from "react-icons/ci";
-import { AiOutlineTwitter } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
+import {FaXTwitter} from "react-icons/fa6"
 import { useState } from "react";
 
 // Custom Google Button Style
@@ -11,21 +11,24 @@ const GStyle: React.CSSProperties = {
   color:"#000",
   background:"#fff",
   fontSize:"14px",
-  margin:"2px 0",
+  borderRadius:"2px",
+  margin: "unset",
 };
 
 // Custom Facebook Button Style
-const TStyle:React.CSSProperties = {
-  background: "#1DA1F2",
+const TStyle: React.CSSProperties = {
+  background: "#000",
   fontSize: "14px",
-  margin: " 2px 0",
+  borderRadius: "2px",
+  margin: "unset",
 };
 
 // Custom Facebook Button Style
-const FStyle:React.CSSProperties = {
+const FStyle: React.CSSProperties = {
   background: "#4267B2",
   fontSize: "14px",
-  margin: " 2px 0",
+  borderRadius: "2px",
+  margin: "unset",
 };
 
 // Main Sign In form
@@ -33,11 +36,6 @@ function SignInForms(): JSX.Element {
   const [blur, setBlur] = useState("");
   const onFocus = () => {
     setBlur("blur");
-  };
-
-  const respondToSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
-    e.preventDefault();
-    setBlur("");
   };
 
   return (
@@ -59,14 +57,13 @@ function SignInForms(): JSX.Element {
           btnStyle={FStyle}
           child={<CiFacebook />}
           to={"/auth/facebook"}
-
         />
         <CustomButton
-          text={"sign in with twitter"}
+          text={"sign in with"}
           checkout="link"
           btnStyle={TStyle}
-          child={<AiOutlineTwitter />}
-          />
+          child={<FaXTwitter />}
+        />
       </span>
     </div>
   );

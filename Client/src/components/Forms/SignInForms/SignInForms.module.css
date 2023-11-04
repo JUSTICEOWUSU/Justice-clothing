@@ -1,93 +1,85 @@
 .signInCont {
   text-align: center;
+  margin: auto;
   width: 65%;
   height: 70vh;
-  margin: 3% auto;
+  display:flex;
+  flex-direction: column;
+  gap:15px;
+  align-items: center;
+  justify-content: center;
   box-shadow: -3px 3px 14px -5px rgba(13,13,13,0.75);
   background-color: #FFFFFF;
 }
 
 .FormTitle{
-  padding-top: 75px;
   font-size: 30px;
   font-weight: 600;
 }
 
 .buttonsCont {
-  padding:7% 35%;
+  padding:0;
   display: flex;
-  justify-content: space-around;
   flex-direction: column;
-  align-content: center;
-  height: 60%;
+  gap: 10px;
+  align-self: center;
+  align-items: center ;
 }
 
 .buttonsCont button {
   text-transform: capitalize;
   border-radius: 20px;
-  margin: 10% auto;
+  width:200px;
 }
 
-@media all and (950px >=width >=770px) {
-  .signInCont {
-    padding: 10%;
-    height: 50vh;
-    margin-top: 20%;
-    border-radius: 8px;
+
+/* mobile device */
+@media (max-width: 480px){
+  .signInCont{
+      width: 90%;
+      /* align-items:flex-end; */
+  }
+
+  .FormTitle{
+    font-size: 1.8rem;
   }
 
   .buttonsCont {
-    padding-left: 20%;
-    padding-right: 20%;
-    height: 50%;
-  }
-  
-  .buttonsCont button {
-    font-size: 35px;
-    border-radius: 16px;
-  }
-}
-
-@media all and (770px >=width >= 600px) {
-  .signInCont {
-    padding: 10%;
-    padding-top: 6%;
-    height: 50vh;
-    margin-top: 20%;
-  }
-
-  .buttonsCont {
-    padding-left: 20%;
-    padding-right: 20%;
-    height: 50%;
+    padding:unset;
+    gap:5px;
+    width:100%;
   }
 
 }
 
-@media all and (width <=600px) {
-  .signInCont {
-    box-shadow: unset;
-    padding: 0;
-    width: 85%;
-    height: 50vh;
-    margin-top: 48%;
-    border-radius: 8px;
-  }
 
-  .buttonsCont {
-    padding: 7%;
-  }
+/* Extra small device*/
+@media (min-width: 481px) and (max-width: 767px){
 
-  .buttonsCont button {
-    border-radius: 13px;
-    width: 100%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
 }
 
-@media all and (width <=320px) {
-  .buttonsCont button {
-    font-size: 5px;
-  }
+
+/* Small Tablet*/
+@media (min-width: 768px) and (max-width: 991px){
+
 }
+
+
+/* Large tablet/Laptop */
+@media (min-width:992) and (max-width:1199px){
+
+}
+
+/* Desktops */
+@media (min-width:1200px) and (max-width:1919px){
+
+}
+
+
+/* Extra-large Screens */
+@media (min-width:1920px){
+    
+}
+
+
+

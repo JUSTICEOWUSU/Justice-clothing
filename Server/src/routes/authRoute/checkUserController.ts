@@ -1,16 +1,18 @@
 import { Request, Response } from 'express';
 import { config } from 'dotenv';
 import jwt from 'jsonwebtoken';
+import cookieSession = require('cookie-session');
 
 config();
 
 const checkUserAuthController = (req: Request, res: Response) => {
   const jwtSecret = process.env.JWT_KEY as string;
-  if (req.body.url && req.session) {
-    req.session.url = req.body.url
+  if(req.session && req.body.url){
+    req.session.url = `/${req.body.url}`
+    console.log(`url : /${req.session.url}`)
   }
+  
   if (req.user) {
-    
     try {
       // Verify the JWT token and get the decoded information
       const decodeId = jwt.verify(req.body.token, jwtSecret) as {

@@ -31,7 +31,7 @@ function ShopSection({
   return (
     <div className={`container-fluid ${style.shopSectionCont}`}>
       <h1 className={`${style.sectionTitle}`}>{title}</h1>
-      <div className={`container-fluid row  overflow-hidden`}>
+      <div className={`container-fluid row  overflow-hidden p-md-0 p-sm-0 p-0`}>
         {items.map(({ id, name, imageUrl, price }, index) => {
           if (limit && index < limit) {
             return (
