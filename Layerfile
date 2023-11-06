@@ -1,0 +1,28 @@
+FROM vm/ubuntu:18.04
+
+SECRET ENV GOOGLE_CLIENT_ID
+RUN echo "secret is: $GOOGLE_CLIENT_ID"
+
+SECRET ENV GOOGLE_SECRET_KEY
+RUN echo "secret is: $GOOGLE_SECRET_KEY"
+
+SECRET ENV FACEBOOK_CLIENT_ID
+RUN echo "secret is: $FACEBOOK_CLIENT_ID"
+
+SECRET ENV FACEBOOK_SECRET_KEY
+RUN echo "secret is: $FACEBOOK_SECRET_KEY"
+
+SECRET ENV JWT_KEY
+RUN echo "secret is: $JWT_KEY"
+
+SECRET ENV MONGODB_KEY
+RUN echo "secret is: $MONGODB_KEY"
+
+RUN curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
+RUN sudo npm install npm@6 -g
+
+COPY . .
+RUN npm run install-server
+RUN BACKGROUND npm run server
+EXPOSE WEBSITE http://localhost:7000
