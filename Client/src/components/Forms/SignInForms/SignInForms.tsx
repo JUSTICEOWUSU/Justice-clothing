@@ -3,8 +3,9 @@ import style from "./SignInForms.module.css";
 import CustomButton from "../../CustomButton/CustomButton";
 import { CiFacebook } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
-import {FaXTwitter} from "react-icons/fa6"
+import { FaXTwitter } from "react-icons/fa6";
 import { useState } from "react";
+import Cookie from "js-cookie";
 
 // Custom Google Button Style
 const GStyle: React.CSSProperties = {
@@ -38,9 +39,14 @@ function SignInForms(): JSX.Element {
     setBlur("blur");
   };
 
+      const jwt = Cookie.get("jwt");
+
+
   return (
     <div className={`${style.signInCont}`}>
-      <h2 className={style.FormTitle}>Welcome Back</h2>
+      <h2 className={style.FormTitle}>
+        {jwt ? "Welcome Back" : "Welcome"}
+      </h2>
       <span className={` ${style.buttonsCont}`}>
         <CustomButton
           text={"sign in with google"}

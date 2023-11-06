@@ -5,8 +5,17 @@
     justify-content: space-between;
     align-items: center;
     height: auto;
-    padding: 3% 7% 0.2% 3%;
+    padding: 0% 7% 0.2% 1%;
 }
+
+
+.svgImage {
+  width: 150px;
+  height: 100px;
+  fill: #FF0000; /* Change the fill color of SVG elements */
+}
+
+
 
 .navItemsContainer{
     display: flex;
@@ -36,8 +45,7 @@
     }
 
     .logoContainer{
-        display: inline-block;
-        padding: 5%;
+        display: none;
     }
 
     .navItemsContainer{

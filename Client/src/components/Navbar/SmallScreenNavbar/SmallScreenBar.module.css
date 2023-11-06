@@ -3,7 +3,7 @@
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    padding: 0.1% 5%;
+    padding: 0.1% 5% 0.1% 0.1%;
 }
 
 .iconSpan{
@@ -21,6 +21,13 @@
     display: flex;
     align-items: center;
 }
+
+.svgImage {
+  width: 100px;
+  height: 70px;
+  fill: #FF0000; /* Change the fill color of SVG elements */
+}
+
 
 .toggleItem{
     font-size: 1.5rem;

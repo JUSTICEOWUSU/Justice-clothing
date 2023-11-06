@@ -6,6 +6,8 @@ import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import { GiTireIronCross } from "react-icons/gi";
 import { showOrHideNav,showOrHideSearch } from "../../../REDUX/NavbarStates/NavbarReducer";
 import { CiSearch } from "react-icons/ci";
+import MySVG from "/justice-clothing.svg";
+
 
 type Toggle = (event: React.MouseEvent<HTMLElement>) => void;
 
@@ -26,10 +28,18 @@ function SmallScreenBar(): JSX.Element {
 
   return (
     <div className={`${style.smallScreenBarCont} container-fluid`}>
-      <span className={style.logoContainer}>logo</span>
+      <span className={style.logoContainer}>
+        <img
+          src={MySVG}
+          alt="JUSTICE_CLOTHING LOGO"
+          className={`${style.svgImage}`}
+        />
+      </span>
 
       <span className={`${style.toggleCont} d-flex`}>
-        <span className={`${style.iconSpan}`} onClick={respondToSearchClicks} >< CiSearch className= {`${style.searchIcon}`}/></span>
+        <span className={`${style.iconSpan}`} onClick={respondToSearchClicks}>
+          <CiSearch className={`${style.searchIcon}`} />
+        </span>
         <CartBag />
         <span className={style.toggleItem} onClick={respondToToggle}>
           {!showAndHideNav && <HiOutlineBars3 />}

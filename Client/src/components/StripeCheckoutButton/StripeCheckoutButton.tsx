@@ -18,7 +18,7 @@ const StripeCheckoutButton = ({ price }: { price: number }) => {
       label="Make Payment"
       name="JUSTICE Clothing Ltd."
       description={`Your total is $${price}`}
-      image="https://svgshare.com/i/CUz.svg"
+      image="/justice-clothing.svg"
       billingAddress
       shippingAddress
       bitcoin

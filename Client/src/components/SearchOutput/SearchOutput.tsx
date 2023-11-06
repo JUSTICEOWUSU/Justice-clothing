@@ -34,7 +34,7 @@ const shuffledArray = [...arr]
 
 
 
-export function ContinousCaurosel(): JSX.Element{
+export function InfiniteCarousel(): JSX.Element{
   const SearchData: ItemsTypes[] = [];
 
   const { data, isLoading } = useGetStoreDataQuery("shopData");
@@ -149,54 +149,12 @@ function SearchOutput(): JSX.Element {
             <FaOpencart className={`${style.cart}`} />
           </span>
 
-          {/* <div className={`${style.ItemsToScroll}`}>
-            <div className={`${style.GenCont}`}>
-              <div className={`${style.ItemsToScrollCont}`}>
-                {finalShuffled.map((item) => {
-                  return (
-                    <div className={`${style.scrollItem}`}>
-                      <p className={`${style.scrollItemTitle}`}>
-                        {`${item.name}`}
-                      </p>
-                      <div className={`${style.blendCover}`}></div>
-                      <img
-                        src={`${item.imageUrl}`}
-                        alt="clothing"
-                        className={`${style.scrollImg}`}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className={`${style.GenCont}`}>
-              <div className={`${style.ItemsToScrollCont}`}>
-                {finalShuffled.map((item) => {
-                  return (
-                    <div className={`${style.scrollItem}`}>
-                      <p className={`${style.scrollItemTitle}`}>
-                        {`${item.name}`}
-                      </p>
-                      <div className={`${style.blendCover}`}></div>
-                      <img
-                        src={`${item.imageUrl}`}
-                        alt="clothing"
-                        className={`${style.scrollImg}`}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-            </div>
-             */}
         </div>
       ) : (
         ""
       )}
 
-      <ContinousCaurosel />
+      <InfiniteCarousel />
     </div>
   );
 }

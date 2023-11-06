@@ -4,7 +4,7 @@ import { HomeItems,StoreItems,IsAuthenticated } from './API_DataTypes';
 export const  E_CommerceApi = createApi({
     reducerPath:'API',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:7000',
+        baseUrl: '/',
     }),
 
     endpoints: (build) => ({
@@ -20,21 +20,13 @@ export const  E_CommerceApi = createApi({
             })
         }),
 
-        getAuthState:build.mutation<IsAuthenticated,string>({
-            query: (data) => ({
-                url: `auth/checkUserAuthentication`,
-                method: 'POST',
-                body: JSON.stringify({ token: data } )           
-            })
-        }),
 
     })
 })
 
-const {useGetHomeDataQuery,useGetStoreDataQuery,useGetAuthStateMutation} = E_CommerceApi
+const {useGetHomeDataQuery,useGetStoreDataQuery} = E_CommerceApi
 
 export {
     useGetHomeDataQuery,
     useGetStoreDataQuery,
-    useGetAuthStateMutation
 }

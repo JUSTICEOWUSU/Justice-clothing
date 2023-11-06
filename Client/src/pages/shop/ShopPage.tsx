@@ -1,5 +1,7 @@
 import React from "react";
 import style from "./ShopPage.module.css";
+import { InfiniteCarousel } from "../../components/SearchOutput/SearchOutput";
+
 import ShopSection from "./ShopPageSections/ShopSection";
 import { useGetStoreDataQuery } from "../../REDUX/API_Queries/E_CommerceAPI";
 import LoadingSpinner from "../../components/LoadingSpinal/LoadingSpinner";
@@ -15,6 +17,7 @@ function ShopPage(): JSX.Element {
           <ShopSection {...data["categories"][1]} limit={4} />
           <ShopSection {...data["categories"][3]} limit={4} />
           <ShopSection {...data["categories"][0]} limit={4} />
+          <InfiniteCarousel />
         </>
       ) : (
         <LoadingSpinner />

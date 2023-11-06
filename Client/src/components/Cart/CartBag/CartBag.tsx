@@ -8,7 +8,7 @@ import StoreCard from "../../Cards/StoreCard/StoreCard";
 import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import { cartBox } from "../../../REDUX/CartStates/CartReducer";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import CustomButton from "../../CustomButton/CustomButton";
 import {checkAndAuthenticateUser} from "../../Cards/StoreCard/StoreCard"
 import Cookie from 'js-cookie';
@@ -51,6 +51,9 @@ function CartBag({screen = ""}: CartBagType): JSX.Element {
   };
 
   // Function responding to the cartBoxButton clicks
+    const location = useLocation().pathname.split("/");
+    const loc = location[location.length - 1];
+
   const respondToButtonClick = async() => {
     const jwt = Cookie.get("jwt");
     if (jwt) {
@@ -61,7 +64,7 @@ function CartBag({screen = ""}: CartBagType): JSX.Element {
         expires: 7,
       });
     } else {
-      const respond = await checkAndAuthenticateUser("unAuthenticated");
+      const respond = await checkAndAuthenticateUser("unAuthenticated",`${loc}`);
       if (!respond.isAuthenticated) {
         return navigate("/login");
       }
