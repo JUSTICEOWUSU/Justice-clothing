@@ -24,5 +24,5 @@ RUN sudo npm install npm@6 -g
 
 COPY . .
 RUN npm run install-server
-RUN BACKGROUND npm run server
+RUN BACKGROUND npm run start-server
 EXPOSE WEBSITE http://localhost:7000
