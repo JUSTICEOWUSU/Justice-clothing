@@ -1,12 +1,13 @@
 {
   "name": "e-commerce-app",
   "version": "1.0.0",
-  "description": "fullstack javascript eCommerce app",
-  "main": "index.js",
+  "description": "Fullstack Typescript E-Commerce APP",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm run dev --prefix Client",
-    "server": "npm run start --prefix server"
+    "server": "npm run start --prefix server",
+    "install-server":"npm run install --prefix server"
   },
   "repository": {
     "type": "git",
