@@ -23,6 +23,7 @@ RUN sudo apt-get install -y nodejs
 RUN sudo npm install npm@6 -g
 
 COPY . .
+RUN npm install -g typescript
 RUN npm run install-server
 RUN BACKGROUND npm run start-server
 EXPOSE WEBSITE http://localhost:7000
