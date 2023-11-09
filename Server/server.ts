@@ -1,8 +1,8 @@
 import http from "http"
-import app from "./app"
-import connectToDatabase from "./database/DBConnection/mongoDBConnection"
-import loadStoreData from "./MongoDB_DATA/MongoStoreData";
-import loadCategoryData from "./MongoDB_DATA/MongoCategoriesData";
+import app from "./app";
+import connectToDatabase from "./src/database/DBConnection/mongoDBConnection"
+import loadStoreData from "./src/MongoDB_DATA/MongoStoreData";
+import loadCategoryData from "./src/MongoDB_DATA/MongoCategoriesData";
 import {config} from "dotenv";
 config();
 

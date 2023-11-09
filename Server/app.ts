@@ -6,12 +6,12 @@ import { config } from 'dotenv';
 import session from 'cookie-session';
 import Google from 'passport-google-oauth20';
 import Facebook from 'passport-facebook';
-import shopRouter from './routes/shopRoute/shopRouter';
-import authRouter from './routes/authRoute/authRouter';
-import checkoutRouter from './routes/paymentRoute/checkoutRouter';
-import categoriesRouter from './routes/categoryRoute/categoriesRoute';
+import shopRouter from './src/routes/shopRoute/shopRouter';
+import authRouter from './src/routes/authRoute/authRouter';
+import checkoutRouter from './src/routes/paymentRoute/checkoutRouter';
+import categoriesRouter from './src/routes/categoryRoute/categoriesRoute';
 config();
-import users from './database/DBModels/userModel';
+import users from './src/database/DBModels/userModel';
 
 type SessionUser = {
     [index: string]: boolean | number | object | string;
@@ -91,16 +91,7 @@ passport.deserializeUser((user: number, done) => {
     return;
 });
 
-// App Configuration
-// app.use(helmet.contentSecurityPolicy({
-//     directives: {
-//         imgSrc: ["'self'", "data:", "*"],
-//         defaultSrc: ["'self'"],
-//         connectSrc: ["'self'", "data:", "https://checkout.stripe.com", "https://js.stripe.com", "https://m.stripe.network", "https://www.google-analytics.com", "https://accounts.google.com"],
-//         scriptSrc: ["'self'", "data:", "https://checkout.stripe.com", "https://js.stripe.com", "https://m.stripe.network", "https://www.google-analytics.com", "https://accounts.google.com"],
 
-//     }
-// }))
 
 app.use(cors({
     origin:"*"
