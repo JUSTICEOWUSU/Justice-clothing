@@ -6,12 +6,12 @@ import { config } from 'dotenv';
 import session from 'cookie-session';
 import Google from 'passport-google-oauth20';
 import Facebook from 'passport-facebook';
-import shopRouter from './src/routes/shopRoute/shopRouter';
-import authRouter from './src/routes/authRoute/authRouter';
-import checkoutRouter from './src/routes/paymentRoute/checkoutRouter';
-import categoriesRouter from './src/routes/categoryRoute/categoriesRoute';
+import shopRouter from './routes/shopRoute/shopRouter';
+import authRouter from './routes/authRoute/authRouter';
+import checkoutRouter from './routes/paymentRoute/checkoutRouter';
+import categoriesRouter from './routes/categoryRoute/categoriesRoute';
 config();
-import users from './src/database/DBModels/userModel';
+import users from './database/DBModels/userModel';
 
 type SessionUser = {
     [index: string]: boolean | number | object | string;

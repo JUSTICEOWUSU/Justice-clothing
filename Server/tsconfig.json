@@ -10,8 +10,14 @@
     "lib": ["es6"],                     
     "allowJs": true,
     "outDir": "./build",                          
-    "rootDir": "./",
+    "rootDir": ".",
+    "baseUrl":".",
     "noImplicitAny": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+     "paths": {
+            "*": ["node_modules/*", "src/types/*"]
+        }
   },
+  "include": ["./src/**/*"]
+
 }
