@@ -30,7 +30,6 @@ const FACEBOOK_KEYS = {
 }
 
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')));
 
 
 // PASSPORT CONFIGURATIONS
@@ -112,7 +111,8 @@ app.use('/shopData', shopRouter);
 app.use('/categories', categoriesRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/auth', authRouter);
-app.get("/*", (req, res) => {
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
