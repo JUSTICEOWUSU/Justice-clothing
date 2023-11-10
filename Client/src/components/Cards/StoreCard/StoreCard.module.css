@@ -95,7 +95,11 @@
 
 @media all and (width <= 700px){
     .cartCard {
-        padding: 1% 3%;
+        padding: 1% 0;
+    }
+
+    .storeCardCont{
+        padding: 5px ;
     }
 
     .cartCard img{

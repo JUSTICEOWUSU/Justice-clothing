@@ -33,9 +33,19 @@
     }
 }
 
-@media all and (700px >= width) {
+@media all and (700px >= width ) {
     .moreCont{
-        padding: 0 12%;
+        padding: 0 ;
+    }
+
+    .shopSectionCont{
+        margin-right:0;
+        border:1px solid red;
+        padding-right:0;
     }
 }
+
+/* @media (max-width:420px){
+
+} */
 
