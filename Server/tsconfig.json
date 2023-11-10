@@ -9,6 +9,7 @@
     "skipLibCheck": true ,
     "lib": ["es6"],                     
     "allowJs": true,
+     "moduleResolution": "node",
     "outDir": "dist", 
     "rootDir" :"./src" ,                      
     "baseUrl":".",
