@@ -11,7 +11,6 @@
     "allowJs": true,
      "moduleResolution": "node",
     "outDir": "dist", 
-    "baseUrl":".",
     "noImplicitAny": true,
     "resolveJsonModule": true,
      "paths": {
