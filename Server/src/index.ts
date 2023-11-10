@@ -25,5 +25,4 @@ startServer()
 
 
 
-// "build": "rimraf ./dist && tsc && cp -R ./src/public ./dist/",
 
