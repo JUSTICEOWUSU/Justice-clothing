@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon  src/index.ts",
     "watch": "npm run build && node dist/index.js",
+"build": "rimraf ./dist && tsc && cp -R ./src/public ./dist/",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
   },
