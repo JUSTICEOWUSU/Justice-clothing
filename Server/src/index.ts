@@ -22,3 +22,8 @@ const startServer = async () => {
 
 // Starting Server
 startServer()
+
+
+
+// "build": "rimraf ./dist && tsc && cp -R ./src/public ./dist/",
+

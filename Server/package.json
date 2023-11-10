@@ -7,7 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node  dist/index.js",
     "watch": "npm run build && node dist/index.js",
-"build": "rimraf ./dist && tsc && cp -R ./src/public ./dist/",
     "ts.check": "tsc --project tsconfig.json",
     "add-build": "git add dist"
   },
@@ -48,3 +47,6 @@
     "passport-google-oauth20": "^2.0.0"
   }
 }
+
+
+
