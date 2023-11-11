@@ -6,7 +6,14 @@ import checkUserAuthController from "./checkUserController";
 const authRouter = Router();
 
 authRouter.get("/facebook", facebookSignUpController);
-authRouter.get("/facebook/callback", facebookCallBackController);
+authRouter.get("/facebook/callback", facebookCallBackController,(req, res) => {
+
+    if (req.session && req.session.url) {
+                      return  res.redirect(`${req.session.url}`);
+    }
+    return res.redirect('/')
+    
+});
 
 authRouter.get("/google", googleSignUpController);
 authRouter.get("/google/callback", googleCallBackController, (req, res) => {

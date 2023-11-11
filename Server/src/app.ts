@@ -20,13 +20,13 @@ type SessionUser = {
 const GOOGLE_KEYS = {
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_SECRET_KEY as string,
-    callbackURL: 'http://localhost:7000/auth/google/callback',
+    callbackURL: 'https://justice-clothing/auth/google/callback',
 }
 
 const FACEBOOK_KEYS = {
     clientID: process.env.FACEBOOK_CLIENT_ID as string,
     clientSecret: process.env.FACEBOOK_SECRET_KEY as string,
-    callbackURL: 'http://localhost:7000/auth/facebook/callback',
+    callbackURL: 'https://justice-clothing/auth/facebook/callback',
 }
 
 const app = express();
@@ -86,7 +86,6 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((user: number, done) => {
     done(null, user);
-    console.log(`this is my id: ${user}`);
     return;
 });
 
