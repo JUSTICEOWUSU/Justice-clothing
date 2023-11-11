@@ -1,9 +1,13 @@
 import React from "react";
 import style from "./HomePage.module.css";
 import HeroCard from "../../components/Cards/HeroSectionCard/HeroCard";
-import { useGetHomeDataQuery } from "../../REDUX/API_Queries/E_CommerceAPI";
+import { useGetHomeDataQuery} from "../../REDUX/API_Queries/E_CommerceAPI";
+
 import LoadingSpinner from "../../components/LoadingSpinal/LoadingSpinner";
 function HomePage(): JSX.Element {
+
+  
+
   const { data, error,isLoading } = useGetHomeDataQuery("categories");
   
 

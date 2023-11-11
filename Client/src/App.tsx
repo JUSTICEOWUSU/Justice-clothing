@@ -6,8 +6,16 @@ import ShopPage from "./pages/shop/ShopPage";
 import LoginPage from "./pages/login/LoginPage";
 import CheckOutPage from "./pages/checkout/CheckOutPage";
 import SearchOutput from "./components/SearchOutput/SearchOutput";
+import {
+  useGetHomeDataQuery,
+  useGetStoreDataQuery,
+} from "./REDUX/API_Queries/E_CommerceAPI";
+
 import ShopCategorized from "./pages/categorizedShop/ShopCategorized";
 function App() {
+        useGetStoreDataQuery("shopData");
+        useGetHomeDataQuery("categories");
+
   return (
     <Router>
       <Routes>

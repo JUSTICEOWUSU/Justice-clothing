@@ -2,8 +2,8 @@ import style from "./LargeScreenNavbar.module.css";
 import CustomNavLink from "../../CustomNavLink/CustomNavLink";
 import SmallScreenBar from "../SmallScreenNavbar/SmallScreenBar";
 import CartBag from "../../Cart/CartBag/CartBag";
-import {Outlet} from "react-router-dom"
-import {useSelector} from "react-redux"
+import {Outlet} from "react-router-dom";
+import {useSelector} from "react-redux";
 import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useLocation } from 'react-router-dom';
