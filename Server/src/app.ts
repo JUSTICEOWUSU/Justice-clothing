@@ -20,13 +20,13 @@ type SessionUser = {
 const GOOGLE_KEYS = {
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_SECRET_KEY as string,
-    callbackURL: 'https://justice-clothing/auth/google/callback',
+    callbackURL: 'https://justice-clothing.vercel.app/auth/google/callback',
 }
 
 const FACEBOOK_KEYS = {
     clientID: process.env.FACEBOOK_CLIENT_ID as string,
     clientSecret: process.env.FACEBOOK_SECRET_KEY as string,
-    callbackURL: 'https://justice-clothing/auth/facebook/callback',
+    callbackURL: 'https://justice-clothing.vercel.app/auth/facebook/callback',
 }
 
 const app = express();
