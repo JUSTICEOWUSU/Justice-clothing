@@ -10,7 +10,6 @@ var checkUserAuthController = function (req, res) {
     var jwtSecret = process.env.JWT_KEY;
     if (req.session && req.body.url) {
         req.session.url = "/".concat(req.body.url);
-        console.log("url : /".concat(req.session.url));
     }
     if (req.user) {
         try {

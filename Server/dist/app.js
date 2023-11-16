@@ -20,12 +20,12 @@ var userModel_1 = __importDefault(require("./database/DBModels/userModel"));
 var GOOGLE_KEYS = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_SECRET_KEY,
-    callbackURL: 'http://localhost:7000/auth/google/callback',
+    callbackURL: 'https://justice-clothing.vercel.app/auth/google/callback',
 };
 var FACEBOOK_KEYS = {
     clientID: process.env.FACEBOOK_CLIENT_ID,
     clientSecret: process.env.FACEBOOK_SECRET_KEY,
-    callbackURL: 'http://localhost:7000/auth/facebook/callback',
+    callbackURL: 'https://justice-clothing.vercel.app/auth/facebook/callback',
 };
 var app = (0, express_1.default)();
 // PASSPORT CONFIGURATIONS
@@ -73,7 +73,6 @@ passport_1.default.serializeUser(function (user, done) {
 });
 passport_1.default.deserializeUser(function (user, done) {
     done(null, user);
-    console.log("this is my id: ".concat(user));
     return;
 });
 app.use((0, cors_1.default)({
