@@ -27,11 +27,6 @@ function CustomNavLink({
 
   const dispatch = useDispatch()
 
-  // const respondToBagClick = () => {
-  //   if (!cartClass) return dispatch(cartBox("showCartBox"));
-  //   return dispatch(cartBox(""));
-  // };
-
 
   const respondToToggle:Toggle = ()=>{
     if(showAndHideNav) dispatch(showOrHideNav(""))

@@ -34,7 +34,7 @@ function LargeScreenNavbar(): JSX.Element {
         <span className={style.navItemsContainer}>
           <CustomNavLink destination={"/"} content={"home"} />
           <CustomNavLink destination={"/shop"} content={"shop"} />
-          <CustomNavLink destination={"/login"} content={jwt?"SIGNED IN":"SIGN IN"} />
+          <CustomNavLink destination={"/login"} content={jwt?"SIGN OUT":"SIGN IN"} />
           <CartBag screen={"largeScreen"} />
         </span>
       </div>
