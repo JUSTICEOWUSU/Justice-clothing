@@ -76,7 +76,7 @@ function SignInForms(): JSX.Element {
     <div className={`${style.signInCont}`}>
       <h2 className={style.FormTitle}>{jwt ? "Welcome Back" : "Welcome"}</h2>
       <span className={` ${style.buttonsCont}`}>
-        {"LO" ? (
+        {jwt ? (
           <CustomButton
             text={"SignOut"}
             btnStyle={GStyle}
