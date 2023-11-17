@@ -7,11 +7,13 @@ var dotenv_1 = require("dotenv");
 var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 (0, dotenv_1.config)();
 var checkUserAuthController = function (req, res) {
+    console.log("checking user authentication");
     var jwtSecret = process.env.JWT_KEY;
     if (req.session && req.body.url) {
         req.session.url = "/".concat(req.body.url);
     }
     if (req.user) {
+        console.log("user successfully logged in");
         try {
             // Verify the JWT token and get the decoded information
             var decodeId = jsonwebtoken_1.default.verify(req.body.token, jwtSecret);
@@ -25,6 +27,7 @@ var checkUserAuthController = function (req, res) {
             }
         }
         catch (error) {
+            console.log("new jwt being created");
             var payload = { id: req.user };
             var token = jsonwebtoken_1.default.sign(payload, jwtSecret, { expiresIn: '24h' });
             return res

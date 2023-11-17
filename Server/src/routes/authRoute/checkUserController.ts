@@ -5,12 +5,14 @@ import jwt from 'jsonwebtoken';
 config();
 
 const checkUserAuthController = (req: Request, res: Response) => {
+  console.log("checking user authentication")
   const jwtSecret = process.env.JWT_KEY as string;
   if(req.session && req.body.url){
     req.session.url = `/${req.body.url}`
   }
   
   if (req.user) {
+    console.log("user successfully logged in")
     try {
       // Verify the JWT token and get the decoded information
       const decodeId = jwt.verify(req.body.token, jwtSecret) as {
@@ -28,6 +30,7 @@ const checkUserAuthController = (req: Request, res: Response) => {
           .json({ token: token, isAuthenticated: true });
       }
     } catch (error) {
+      console.log("new jwt being created")
       const payload = { id: req.user };
       const token = jwt.sign(payload, jwtSecret, { expiresIn: '24h' });
       return res
