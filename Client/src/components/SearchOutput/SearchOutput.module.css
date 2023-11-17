@@ -223,3 +223,19 @@ border-radius: 2px;
     
 
 }
+
+@media all and (width<=500px) {
+    .scrollItem{
+    height:100%;
+    width:120px;
+}
+
+.ItemsToScroll{
+    height:15vh;
+}
+
+.scrollItemTitle{
+    font-size:0.7rem
+
+}
+}

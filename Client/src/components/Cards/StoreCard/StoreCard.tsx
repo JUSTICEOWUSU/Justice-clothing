@@ -1,7 +1,9 @@
 import style from "./StoreCard.module.css";
 import StoreCardProps from "../../../Types/StoreCardTypes";
 import { useDispatch } from "react-redux";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { changeAuthState } from "../../../REDUX/AuthenticationStates/AuthenticationStateReducer";
+
 import { addToCart } from "../../../REDUX/CartStates/CartReducer";
 // import { useGetAuthStateMutation } from "../../../REDUX/API_Queries/E_CommerceAPI";
 import Cookie from "js-cookie";
@@ -11,15 +13,19 @@ type click = (event: React.MouseEvent<HTMLButtonElement>) => void;
 export async function checkAndAuthenticateUser(data: string,url?:string) {
 
   try {
-   const respond = await fetch(
-     "/auth/checkUserAuthentication",
-     {
+    const respond = await fetch(
+     
+      "/auth/checkUserAuthentication",
+     
+      {
+       
        method: "POST",
        redirect:"follow",
        headers: {
          "content-type": "application/json",
        },
-       body: JSON.stringify({ token: data,url }),
+        body: JSON.stringify({ token: data, url }),
+       
      }
    );
     
@@ -46,21 +52,35 @@ function StoreCard({
   const loc= location[location.length-1]
   
 
-
   const  respondToButtonClick: click =  async() => {
     const jwt = Cookie.get("jwt");
     if (jwt) {
+
       const respond = await checkAndAuthenticateUser(jwt)
       Cookie.set("jwt", respond, {
         secure: true,
         sameSite: "strict",
         expires: 7,
       });
+      
     } else {
-     
-      const respond = await checkAndAuthenticateUser("unAuthenticated",loc);
+
+      const respond = await checkAndAuthenticateUser("unAuthenticated", loc);
+      
       if (!respond.isAuthenticated) {
+
         return navigate("/login")
+
+      } else {
+
+         Cookie.set("jwt", respond, {
+           secure: true,
+           sameSite: "strict",
+           expires: 7,
+         });
+        
+              dispatch(changeAuthState(true));
+
       }
       } 
     

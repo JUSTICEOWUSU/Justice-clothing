@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { HomeItems,StoreItems,IsAuthenticated } from './API_DataTypes';
+import { HomeItems,StoreItems} from './API_DataTypes';
 
 export const  E_CommerceApi = createApi({
     reducerPath:'API',

@@ -8,13 +8,12 @@ import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import SearchBar from "../../SearchBar/SearchBar";
 import { useLocation } from 'react-router-dom';
 import MySVG from '/justice-clothing.svg'
-import Cookie from "js-cookie";
 
 
 // Main LargeScreen navigation bar 
 function LargeScreenNavbar(): JSX.Element {
   const location = useLocation()
-      const jwt = Cookie.get("jwt");
+  const isAuthenticated = useSelector((state: storeType) => state.authState);
 
 
   // State Controlling the Visibility of the Large Navigation Bar
@@ -34,7 +33,7 @@ function LargeScreenNavbar(): JSX.Element {
         <span className={style.navItemsContainer}>
           <CustomNavLink destination={"/"} content={"home"} />
           <CustomNavLink destination={"/shop"} content={"shop"} />
-          <CustomNavLink destination={"/login"} content={jwt?"SIGN OUT":"SIGN IN"} />
+          <CustomNavLink destination={"/login"} content={isAuthenticated?"SIGN OUT":"SIGN IN"} />
           <CartBag screen={"largeScreen"} />
         </span>
       </div>

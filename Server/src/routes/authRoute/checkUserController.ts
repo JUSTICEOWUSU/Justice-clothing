@@ -8,9 +8,10 @@ const checkUserAuthController = (req: Request, res: Response) => {
   console.log("checking user authentication")
   const jwtSecret = process.env.JWT_KEY as string;
   if (req.session && req.body.url) {
-    console.log(`session.url is set + this is it :${req.body.url}`);
     
     req.session.url = `/${req.body.url}`
+        console.log(`session.url is set + this is it :${req.session.url}`);
+
   }
   
   if (req.user) {

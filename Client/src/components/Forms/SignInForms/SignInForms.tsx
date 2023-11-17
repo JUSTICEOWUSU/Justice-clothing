@@ -3,9 +3,12 @@ import style from "./SignInForms.module.css";
 import CustomButton from "../../CustomButton/CustomButton";
 import { CiFacebook } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
+import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import { FaXTwitter } from "react-icons/fa6";
 import { useState } from "react";
+import {useSelector,useDispatch} from "react-redux"
 import Cookie from "js-cookie";
+import {changeAuthState} from "../../../REDUX/AuthenticationStates/AuthenticationStateReducer"
 import { useNavigate } from "react-router-dom";
 
 // Custom Google Button Style
@@ -35,8 +38,7 @@ const FStyle: React.CSSProperties = {
 
 
 
- async function respondToLogoutRequest() {
-
+ async function respondToLogoutRequest() { 
   try {
    const respond = await fetch(
      "/auth/logout",
@@ -57,26 +59,32 @@ const FStyle: React.CSSProperties = {
 
 // Main Sign In form
 function SignInForms(): JSX.Element {
+  const dispatch = useDispatch();
+  const isAuthenticated  = useSelector(
+      (state: storeType) => state.authState
+    );
+
   const navigate = useNavigate()
   const [blur, setBlur] = useState("");
   const onFocus = () => {
     setBlur("blur");
   };
 
+
   async function respondToLogout() {
     const respond = (await respondToLogoutRequest()) as { logout: boolean };
     if (respond.logout) {
       Cookie.remove("jwt");
+      dispatch(changeAuthState(false))
       return navigate("/");
     }
   }
-      const jwt = Cookie.get("jwt");
 
   return (
     <div className={`${style.signInCont}`}>
-      <h2 className={style.FormTitle}>{jwt ? "Welcome Back" : "Welcome"}</h2>
+      <h2 className={style.FormTitle}>{isAuthenticated ? "SignOut Here " : "Welcome"}</h2>
       <span className={` ${style.buttonsCont}`}>
-        {jwt ? (
+        {isAuthenticated ? (
           <CustomButton
             text={"SignOut"}
             btnStyle={GStyle}
