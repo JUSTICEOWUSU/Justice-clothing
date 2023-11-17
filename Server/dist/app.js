@@ -8,7 +8,7 @@ var cors_1 = __importDefault(require("cors"));
 var express_1 = __importDefault(require("express"));
 var passport_1 = __importDefault(require("passport"));
 var dotenv_1 = require("dotenv");
-var cookie_session_1 = __importDefault(require("cookie-session"));
+var express_session_1 = __importDefault(require("express-session"));
 var passport_google_oauth20_1 = __importDefault(require("passport-google-oauth20"));
 var passport_facebook_1 = __importDefault(require("passport-facebook"));
 var shopRouter_1 = __importDefault(require("./routes/shopRoute/shopRouter"));
@@ -21,16 +21,18 @@ var GOOGLE_KEYS = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_SECRET_KEY,
     callbackURL: 'https://justice-clothing.vercel.app/auth/google/callback',
+    passReqToCallback: true,
 };
 var FACEBOOK_KEYS = {
     clientID: process.env.FACEBOOK_CLIENT_ID,
     clientSecret: process.env.FACEBOOK_SECRET_KEY,
     callbackURL: 'https://justice-clothing.vercel.app/auth/facebook/callback',
+    passReqToCallback: true,
 };
 var app = (0, express_1.default)();
 // PASSPORT CONFIGURATIONS
 // REGISTER USER WITH GOOGLE
-passport_1.default.use(new passport_google_oauth20_1.default.Strategy(GOOGLE_KEYS, function (accessToken, refreshToken, profile, done) {
+passport_1.default.use(new passport_google_oauth20_1.default.Strategy(GOOGLE_KEYS, function (req, accessToken, refreshToken, profile, done) {
     var userExist = userModel_1.default.findOne({
         id: profile.id
     });
@@ -46,10 +48,15 @@ passport_1.default.use(new passport_google_oauth20_1.default.Strategy(GOOGLE_KEY
             }
         });
     }
-    return done(null, profile);
+    req.logIn(profile, function (err) {
+        if (err) {
+            return done(err);
+        }
+        return done(null, profile);
+    });
 }));
 // REGISTER USER WITH FACEBOOK
-passport_1.default.use(new passport_facebook_1.default.Strategy(FACEBOOK_KEYS, function (accessToken, refreshToken, profile, done) {
+passport_1.default.use(new passport_facebook_1.default.Strategy(FACEBOOK_KEYS, function (req, accessToken, refreshToken, profile, done) {
     var userExist = userModel_1.default.findOne({
         id: profile.id
     });
@@ -65,7 +72,12 @@ passport_1.default.use(new passport_facebook_1.default.Strategy(FACEBOOK_KEYS, f
             }
         });
     }
-    return done(null, profile);
+    req.logIn(profile, function (err) {
+        if (err) {
+            return done(err);
+        }
+        return done(null, profile);
+    });
 }));
 passport_1.default.serializeUser(function (user, done) {
     var sessionUser = user;
@@ -78,10 +90,12 @@ passport_1.default.deserializeUser(function (user, done) {
 app.use((0, cors_1.default)({
     origin: "*"
 }));
-app.use((0, cookie_session_1.default)({
+app.use((0, express_session_1.default)({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
     name: 'session',
-    keys: ['secret'],
-    maxAge: 1000 * 60 * 60 * 2
+    cookie: { maxAge: 1000 * 60 * 60 * 2 },
 }));
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());

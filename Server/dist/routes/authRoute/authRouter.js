@@ -14,14 +14,18 @@ authRouter.get("/facebook/callback", authFacebookController_1.facebookCallBackCo
     if (req.session && req.session.url) {
         return res.redirect("".concat(req.session.url));
     }
-    return res.redirect('/');
+    else {
+        return res.redirect('/');
+    }
 });
 authRouter.get("/google", authGoogleController_1.googleSignUpController);
 authRouter.get("/google/callback", authGoogleController_1.googleCallBackController, function (req, res) {
     if (req.session && req.session.url) {
         return res.redirect("".concat(req.session.url));
     }
-    return res.redirect('/');
+    else {
+        return res.redirect('/');
+    }
 });
 authRouter.post("/checkUserAuthentication", checkUserController_1.default);
 authRouter.get("/logout", authLogoutController_1.default);

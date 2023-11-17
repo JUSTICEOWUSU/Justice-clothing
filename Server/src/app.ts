@@ -3,7 +3,7 @@ import cors from 'cors'
 import express from 'express';
 import passport from 'passport';
 import { config } from 'dotenv';
-import session from 'cookie-session';
+import session from 'express-session';
 import Google from 'passport-google-oauth20';
 import Facebook from 'passport-facebook';
 import shopRouter from './routes/shopRoute/shopRouter';
@@ -12,21 +12,41 @@ import checkoutRouter from './routes/paymentRoute/checkoutRouter';
 import categoriesRouter from './routes/categoryRoute/categoriesRoute';
 config();
 import users from './database/DBModels/userModel';
+import {Request,Response} from 'express'
+
+declare module 'express-session' {
+  interface SessionData {
+    url?: string;
+  }
+}
 
 type SessionUser = {
     [index: string]: boolean | number | object | string;
 }
 
-const GOOGLE_KEYS = {
+const GOOGLE_KEYS:{
+    clientID: string;
+    clientSecret: string;
+    callbackURL: string;
+    passReqToCallback: true; // Specify the value explicitly as 'true'
+} = {
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_SECRET_KEY as string,
     callbackURL: 'https://justice-clothing.vercel.app/auth/google/callback',
+    passReqToCallback: true,
+
 }
 
-const FACEBOOK_KEYS = {
+const FACEBOOK_KEYS : {
+    clientID: string;
+    clientSecret: string;
+    callbackURL: string;
+    passReqToCallback: true; // Specify the value explicitly as 'true'
+} = {
     clientID: process.env.FACEBOOK_CLIENT_ID as string,
     clientSecret: process.env.FACEBOOK_SECRET_KEY as string,
     callbackURL: 'https://justice-clothing.vercel.app/auth/facebook/callback',
+    passReqToCallback: true,
 }
 
 const app = express();
@@ -35,7 +55,7 @@ const app = express();
 // PASSPORT CONFIGURATIONS
 
 // REGISTER USER WITH GOOGLE
-passport.use(new Google.Strategy(GOOGLE_KEYS, (accessToken, refreshToken, profile, done) => {
+passport.use(new Google.Strategy(GOOGLE_KEYS, (req:Request,accessToken:String, refreshToken:String, profile:any, done:any) => {
     const userExist = users.findOne({
         id: profile.id
     })
@@ -53,11 +73,17 @@ passport.use(new Google.Strategy(GOOGLE_KEYS, (accessToken, refreshToken, profil
             }
         })
     }
-    return done(null, profile);
+    
+     req.logIn(profile, (err) => {
+        if (err) {
+            return done(err);
+        }
+        return done(null, profile);
+    });
 }));
 
 // REGISTER USER WITH FACEBOOK
-passport.use(new Facebook.Strategy(FACEBOOK_KEYS, (accessToken, refreshToken, profile, done) => {
+passport.use(new Facebook.Strategy(FACEBOOK_KEYS, (req:Request,accessToken:String, refreshToken:String, profile:any, done:any) => {
     const userExist = users.findOne({
         id: profile.id
     })
@@ -75,7 +101,13 @@ passport.use(new Facebook.Strategy(FACEBOOK_KEYS, (accessToken, refreshToken, pr
             }
         })
     }
-    return done(null, profile);
+
+     req.logIn(profile, (err) => {
+        if (err) {
+            return done(err);
+        }
+        return done(null, profile);
+    });
 
 }));
 
@@ -96,9 +128,11 @@ app.use(cors({
 }))
 
 app.use(session({
+    secret: 'your-secret-key',
+    resave: false,
+    saveUninitialized: true,
     name: 'session',
-    keys: ['secret'],
-    maxAge: 1000 * 60 * 60 * 2
+     cookie: { maxAge: 1000 * 60 * 60 * 2 },
 }));
 
 app.use(passport.initialize());
