@@ -1,5 +1,7 @@
  import  {connect,connection} from  "mongoose";
 
+
+
  connection.once("open",()=>{
     console.log("Successfully connected to mongoDb database");
  });
@@ -15,4 +17,4 @@
     await connect(`${process.env.MONGODB_KEY}`)
  }
 
- export default connectToDatabase
+export { connectToDatabase, connection };

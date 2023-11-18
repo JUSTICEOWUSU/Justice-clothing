@@ -1,6 +1,6 @@
 import path from 'path';
 import cors from 'cors'
-import express from 'express';
+import express,{Request} from 'express';
 import passport from 'passport';
 import { config } from 'dotenv';
 import session from 'express-session';
@@ -12,7 +12,6 @@ import checkoutRouter from './routes/paymentRoute/checkoutRouter';
 import categoriesRouter from './routes/categoryRoute/categoriesRoute';
 config();
 import users from './database/DBModels/userModel';
-import {Request,Response} from 'express'
 
 declare module 'express-session' {
   interface SessionData {
@@ -24,6 +23,7 @@ type SessionUser = {
     [index: string]: boolean | number | object | string;
 }
 
+
 const GOOGLE_KEYS:{
     clientID: string;
     clientSecret: string;
@@ -32,7 +32,7 @@ const GOOGLE_KEYS:{
 } = {
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_SECRET_KEY as string,
-    callbackURL: 'https://justice-clothing.vercel.app/auth/google/callback',
+    callbackURL: 'http://localhost:7000/auth/google/callback',
     passReqToCallback: true,
 
 }
@@ -45,7 +45,7 @@ const FACEBOOK_KEYS : {
 } = {
     clientID: process.env.FACEBOOK_CLIENT_ID as string,
     clientSecret: process.env.FACEBOOK_SECRET_KEY as string,
-    callbackURL: 'https://justice-clothing.vercel.app/auth/facebook/callback',
+    callbackURL: 'http://localhost:7000/auth/facebook/callback',
     passReqToCallback: true,
 }
 
@@ -55,8 +55,9 @@ const app = express();
 // PASSPORT CONFIGURATIONS
 
 // REGISTER USER WITH GOOGLE
-passport.use(new Google.Strategy(GOOGLE_KEYS, (req:Request,accessToken:String, refreshToken:String, profile:any, done:any) => {
-    const userExist = users.findOne({
+passport.use(new Google.Strategy(GOOGLE_KEYS, async (req:Request,accessToken:String, refreshToken:String, profile:any, done:any) => {
+   console.log(`id is = ${profile.id}`)
+    const userExist = await users.findOne({
         id: profile.id
     })
 
@@ -64,26 +65,32 @@ passport.use(new Google.Strategy(GOOGLE_KEYS, (req:Request,accessToken:String, r
         const newUser = new users({
             username: profile.displayName,
             id: profile.id,
-            email: profile.emails
+            email: profile.emails[0].value
         });
 
-        newUser.save((error) => {
-            if (error) {
-                return done(error.message);
-            }
-        })
-    }
-    
-     req.logIn(profile, (err) => {
-        if (err) {
-            return done(err);
+        try {
+            await newUser.save()
+        } catch (error){
+            return done(error)
         }
-        return done(null, profile);
-    });
+    }
+
+   
+      try {
+        await req.logIn(profile, (err) => {
+            if (err) {
+                return done(err);
+            }
+            return done(null, profile);
+        });
+          
+    } catch (error) {
+        return done(error);
+    }
 }));
 
 // REGISTER USER WITH FACEBOOK
-passport.use(new Facebook.Strategy(FACEBOOK_KEYS, (req:Request,accessToken:String, refreshToken:String, profile:any, done:any) => {
+passport.use(new Facebook.Strategy(FACEBOOK_KEYS, async (req:Request,accessToken:String, refreshToken:String, profile:any, done:any) => {
     const userExist = users.findOne({
         id: profile.id
     })
@@ -92,14 +99,16 @@ passport.use(new Facebook.Strategy(FACEBOOK_KEYS, (req:Request,accessToken:Strin
         const newUser = new users({
             username: profile.displayName,
             id: profile.id,
-            email: profile.emails
+            email: profile.emails[0].value
         });
 
-        newUser.save((error) => {
-            if (error) {
-                return done(error);
-            }
-        })
+        try {
+            await newUser.save()
+ 
+        } catch (error) {
+            return done(error)
+        }
+
     }
 
      req.logIn(profile, (err) => {
@@ -113,14 +122,18 @@ passport.use(new Facebook.Strategy(FACEBOOK_KEYS, (req:Request,accessToken:Strin
 
 passport.serializeUser((user, done) => {
     const sessionUser = user as SessionUser
+    console.log('user from serializeUser' + user)
+    console.log('sessionUser from serializeUser' + sessionUser)
+    console.log(sessionUser)
+
     done(null, sessionUser.id);
 });
 
 passport.deserializeUser((user: number, done) => {
-    done(null, user);
-    return;
+    console.log(`this is user from deserializeUser = ${user}`)
+    console.log(user)
+   return  done(null, user);
 });
-
 
 
 app.use(cors({
@@ -132,7 +145,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     name: 'session',
-     cookie: { maxAge: 1000 * 60 * 60 * 2 },
+    cookie: { maxAge: 1000 * 60 * 60 * 2 },
 }));
 
 app.use(passport.initialize());
@@ -148,7 +161,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
-
 
 export default app;

@@ -40,12 +40,9 @@ const FStyle: React.CSSProperties = {
 
  async function respondToLogoutRequest() { 
   try {
-   const respond = await fetch(
-     "/auth/logout",
-     {
-       method: "GET",
-     }
-   );
+   const respond = await fetch("http://localhost:7000/auth/logout", {
+     method: "GET",
+   });
     
     if (!respond.ok) {
       throw new Error( `An Error ocurred Status:${respond.status}`)
@@ -82,7 +79,9 @@ function SignInForms(): JSX.Element {
 
   return (
     <div className={`${style.signInCont}`}>
-      <h2 className={style.FormTitle}>{isAuthenticated ? "SignOut Here " : "Welcome"}</h2>
+      <h2 className={style.FormTitle}>
+        {isAuthenticated ? "SignOut Here " : "Welcome"}
+      </h2>
       <span className={` ${style.buttonsCont}`}>
         {isAuthenticated ? (
           <CustomButton
@@ -100,17 +99,17 @@ function SignInForms(): JSX.Element {
               linkStyle={{ color: "#000" }}
               checkout="link"
               child={<FcGoogle />}
-              to={"/auth/google"}
-              // onclick={resToGoogle}
-            />
-
+              to={"http://localhost:7000/auth/google"}
+              />
+              
             <CustomButton
               text={"sign in with facebook"}
               checkout="link"
               btnStyle={FStyle}
               child={<CiFacebook />}
-              to={"/auth/facebook"}
-            />
+              to={"http://localhost:7000/auth/facebook"}
+              />
+              
             <CustomButton
               text={"sign in with"}
               checkout="link"

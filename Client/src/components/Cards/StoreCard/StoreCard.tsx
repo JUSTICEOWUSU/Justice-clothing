@@ -15,7 +15,7 @@ export async function checkAndAuthenticateUser(data: string,url?:string) {
   try {
     const respond = await fetch(
      
-      "/auth/checkUserAuthentication",
+      "http://localhost:7000/auth/checkUserAuthentication",
      
       {
        

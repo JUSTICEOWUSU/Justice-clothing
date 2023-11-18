@@ -10,9 +10,10 @@ const checkUserAuthController = (req: Request, res: Response) => {
   if (req.session && req.body.url) {
     
     req.session.url = `/${req.body.url}`
-        console.log(`session.url is set + this is it :${req.session.url}`);
-
+    console.log(`session.url is set + this is it :${req.session.url}`);
   }
+
+  console.log(`request . user is = ${req.user}`)
   
   if (req.user) {
     console.log("user successfully logged in")

@@ -1,10 +1,12 @@
 import http from "http"
 import app from "./app";
-import connectToDatabase from "./database/DBConnection/mongoDBConnection"
+import {connectToDatabase} from "./database/DBConnection/mongoDBConnection"
 import loadStoreData from "./MongoDB_DATA/MongoStoreData";
 import loadCategoryData from "./MongoDB_DATA/MongoCategoriesData";
 import {config} from "dotenv";
 config();
+
+process.setMaxListeners(15);
 
 
 const server =http.createServer(app)

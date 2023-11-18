@@ -19,12 +19,13 @@ authRouter.get("/facebook/callback", facebookCallBackController,(req, res) => {
 });
 
 authRouter.get("/google", googleSignUpController);
-authRouter.get("/google/callback", googleCallBackController, (req, res) => {
 
+authRouter.get("/google/callback", googleCallBackController, (req, res) => {
+   
     if (req.session && req.session.url) {
-        return res.redirect(`${req.session.url}`);
+        return res.redirect(`http://localhost:3000${req.session.url}`);
     } else {
-        return res.redirect('/');
+        return res.redirect('http://localhost:3000');
     }
     
 });
