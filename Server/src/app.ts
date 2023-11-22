@@ -1,14 +1,15 @@
-import path from 'path';
-import cors from 'cors'
-import express,{Request} from 'express';
+import express,{Request,Response} from 'express';
 import passport from 'passport';
+import cors from 'cors'
 import { config } from 'dotenv';
 import session from 'express-session';
-import Google from 'passport-google-oauth20';
+import MongoStore from 'connect-mongo'
+const Google = require('passport-google-oidc');
+const Livereload = require('connect-livereload')
 import Facebook from 'passport-facebook';
 import shopRouter from './routes/shopRoute/shopRouter';
 import authRouter from './routes/authRoute/authRouter';
-import checkoutRouter from './routes/paymentRoute/checkoutRouter';
+import checkoutRouter from './routes/PaymentRoute/checkoutRouter';
 import categoriesRouter from './routes/categoryRoute/categoriesRoute';
 config();
 import users from './database/DBModels/userModel';
@@ -16,6 +17,8 @@ import users from './database/DBModels/userModel';
 declare module 'express-session' {
   interface SessionData {
     url?: string;
+    passport: any;
+    user: any;
   }
 }
 
@@ -23,143 +26,114 @@ type SessionUser = {
     [index: string]: boolean | number | object | string;
 }
 
-
 const GOOGLE_KEYS:{
     clientID: string;
     clientSecret: string;
     callbackURL: string;
-    passReqToCallback: true; // Specify the value explicitly as 'true'
 } = {
     clientID: process.env.GOOGLE_CLIENT_ID as string,
     clientSecret: process.env.GOOGLE_SECRET_KEY as string,
     callbackURL: 'http://localhost:7000/auth/google/callback',
-    passReqToCallback: true,
-
 }
 
 const FACEBOOK_KEYS : {
     clientID: string;
     clientSecret: string;
     callbackURL: string;
-    passReqToCallback: true; // Specify the value explicitly as 'true'
 } = {
     clientID: process.env.FACEBOOK_CLIENT_ID as string,
     clientSecret: process.env.FACEBOOK_SECRET_KEY as string,
     callbackURL: 'http://localhost:7000/auth/facebook/callback',
-    passReqToCallback: true,
 }
-
-const app = express();
 
 
 // PASSPORT CONFIGURATIONS
 
 // REGISTER USER WITH GOOGLE
-passport.use(new Google.Strategy(GOOGLE_KEYS, async (req:Request,accessToken:String, refreshToken:String, profile:any, done:any) => {
-   console.log(`id is = ${profile.id}`)
-    const userExist = await users.findOne({
-        id: profile.id
-    })
+passport.use(new Google.Strategy(GOOGLE_KEYS, async ( issuer:any,profile:any,cb:any) => {
+     try {
+        const userExist = await users.findOne({ id: profile.id });
+        
+        if (!userExist) {
+            const newUser = new users({
+                username: profile.displayName || profile.username || 'unknown',
+                id: profile.id,
+                  email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : null,
+            });
 
-    if (!userExist) {
-        const newUser = new users({
-            username: profile.displayName,
-            id: profile.id,
-            email: profile.emails[0].value
-        });
-
-        try {
-            await newUser.save()
-        } catch (error){
-            return done(error)
+            await newUser.save();
         }
-    }
 
-   
-      try {
-        await req.logIn(profile, (err) => {
-            if (err) {
-                return done(err);
-            }
-            return done(null, profile);
-        });
-          
+        return cb(null, profile);
+    } catch (error) {
+        return cb(error);
+    }
+}));
+
+// REGISTER USER WITH FACEBOOK
+passport.use(new Facebook.Strategy(FACEBOOK_KEYS, async (accessToken: string, refreshToken: string, profile:any, done: any) => {
+     try {
+        const userExist = await users.findOne({ id: profile.id });
+
+        if (!userExist) {
+            const newUser = new users({
+                username: profile.displayName || profile.username || 'unknown',
+                id: profile.id,
+                  email: profile.emails && profile.emails.length > 0 ? profile.emails[0].value : null,
+            });
+
+            await newUser.save();
+        }
+
+        return done(null, profile);
     } catch (error) {
         return done(error);
     }
 }));
 
-// REGISTER USER WITH FACEBOOK
-passport.use(new Facebook.Strategy(FACEBOOK_KEYS, async (req:Request,accessToken:String, refreshToken:String, profile:any, done:any) => {
-    const userExist = users.findOne({
-        id: profile.id
-    })
-
-    if (!userExist) {
-        const newUser = new users({
-            username: profile.displayName,
-            id: profile.id,
-            email: profile.emails[0].value
-        });
-
-        try {
-            await newUser.save()
- 
-        } catch (error) {
-            return done(error)
-        }
-
-    }
-
-     req.logIn(profile, (err) => {
-        if (err) {
-            return done(err);
-        }
-        return done(null, profile);
-    });
-
-}));
-
 passport.serializeUser((user, done) => {
     const sessionUser = user as SessionUser
-    console.log('user from serializeUser' + user)
-    console.log('sessionUser from serializeUser' + sessionUser)
-    console.log(sessionUser)
-
     done(null, sessionUser.id);
 });
 
-passport.deserializeUser((user: number, done) => {
-    console.log(`this is user from deserializeUser = ${user}`)
-    console.log(user)
-   return  done(null, user);
+passport.deserializeUser(async (id: number, done) => {
+  try {
+    done(null, id);
+  } catch (error) {
+    done(error);
+  }
 });
 
 
-app.use(cors({
-    origin:"*"
-}))
-
+const app = express();
+app.use(cors(
+    {
+    origin: 'http://localhost:3000',
+    credentials: true,
+    }
+))
 app.use(session({
     secret: 'your-secret-key',
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     name: 'session',
+    store: MongoStore.create({
+      mongoUrl: `${process.env.MONGODB_KEY}`, 
+      ttl: 14 * 24 * 60 * 60, // = 14 days. Default
+    }),
     cookie: { maxAge: 1000 * 60 * 60 * 2 },
 }));
-
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(Livereload());
 app.use(express.json());
-
 
 app.use('/shopData', shopRouter);
 app.use('/categories', categoriesRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/auth', authRouter);
-app.use(express.static(path.join(__dirname, 'public')));
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+app.get('/', (req:Request, res:Response) => {
+    res.send("Server is ON")
 });
 
 export default app;

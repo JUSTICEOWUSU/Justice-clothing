@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.googleSignUpController = exports.googleCallBackController = void 0;
-var passport_1 = __importDefault(require("passport"));
-var googleSignUpController = passport_1.default.authenticate('google', {
-    scope: ['email']
+const passport_1 = __importDefault(require("passport"));
+const googleSignUpController = passport_1.default.authenticate('google', {
+    scope: ['profile', 'email']
 });
 exports.googleSignUpController = googleSignUpController;
-var googleCallBackController = passport_1.default.authenticate('google', {
-    failureRedirect: "/login"
+const googleCallBackController = passport_1.default.authenticate('google', {
+    failureRedirect: "http://localhost:3000/login",
 });
 exports.googleCallBackController = googleCallBackController;

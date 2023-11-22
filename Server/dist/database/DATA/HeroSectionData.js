@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var HomePageData = [
+const HomePageData = [
     {
         title: 'hats',
         imageUrl: 'https://media.istockphoto.com/id/1358483276/photo/classic-cowboy-brown-felt-hat-with-strap-and-copper-closure.jpg?s=612x612&w=0&k=20&c=IcQy8ISff_GCoGbAYVy_-svOwp74vbZyT4MFTSBbdHc=',

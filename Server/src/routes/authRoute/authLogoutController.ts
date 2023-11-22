@@ -5,7 +5,18 @@ const authLogoutController = (req:Request, res:Response) => {
       console.error(err);
       return res.status(500).json({logOut:false});
     } 
-      return res.json({logOut:true});
+
+     res.clearCookie;
+      req.session.passport = null;
+     delete req.session.user;
+     req.session.destroy(function (err) {
+       if (err) {
+         console.error(err);
+         return res.status(500).json({ logOut: false });
+       }
+
+       return res.json({ logOut: true });
+     });
   });
 }
 

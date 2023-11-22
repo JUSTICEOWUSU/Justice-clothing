@@ -6,8 +6,6 @@ import loadCategoryData from "./MongoDB_DATA/MongoCategoriesData";
 import {config} from "dotenv";
 config();
 
-process.setMaxListeners(15);
-
 
 const server =http.createServer(app)
 
@@ -24,7 +22,3 @@ const startServer = async () => {
 
 // Starting Server
 startServer()
-
-
-
-

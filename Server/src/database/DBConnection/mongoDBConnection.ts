@@ -1,12 +1,10 @@
  import  {connect,connection} from  "mongoose";
 
-
-
  connection.once("open",()=>{
     console.log("Successfully connected to mongoDb database");
  });
 
- connection.on("error",()=>{
+ connection.once("error",()=>{
     console.log("Sorry! Could not connect to mongoDB database");
     
  })

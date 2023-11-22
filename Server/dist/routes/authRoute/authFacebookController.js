@@ -4,12 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.facebookSignUpController = exports.facebookCallBackController = void 0;
-var passport_1 = __importDefault(require("passport"));
-var facebookSignUpController = passport_1.default.authenticate('facebook', {
-    scope: ['email']
+const passport_1 = __importDefault(require("passport"));
+const facebookSignUpController = passport_1.default.authenticate("facebook", {
+    scope: ["profile", "email"],
 });
 exports.facebookSignUpController = facebookSignUpController;
-var facebookCallBackController = passport_1.default.authenticate('facebook', {
-    failureRedirect: '/login',
+const facebookCallBackController = passport_1.default.authenticate("facebook", {
+    failureRedirect: "http://localhost:3000/login",
 });
 exports.facebookCallBackController = facebookCallBackController;

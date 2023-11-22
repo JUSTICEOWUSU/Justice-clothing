@@ -1,11 +1,11 @@
 import passport from "passport";
 
 const googleSignUpController = passport.authenticate('google', {
-    scope: ['email']
+    scope: ['profile','email']
 });
 
 const googleCallBackController = passport.authenticate('google', {
-    failureRedirect:"/login"
+    failureRedirect:"http://localhost:3000/login",
 });
 
 export {

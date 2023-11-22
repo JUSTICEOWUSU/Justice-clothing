@@ -1,23 +1,28 @@
 import { Request, Response } from 'express';
-import { config } from 'dotenv';
-import jwt from 'jsonwebtoken';
+import { config } from "dotenv";
+import jwt from "jsonwebtoken";
+import users from '../../database/DBModels/userModel';
+config()
 
-config();
-
-const checkUserAuthController = (req: Request, res: Response) => {
-  console.log("checking user authentication")
-  const jwtSecret = process.env.JWT_KEY as string;
-  if (req.session && req.body.url) {
+const checkUserAuthController = async (req: Request, res: Response) => {
+    const jwtSecret = process.env.JWT_KEY as string;
     
-    req.session.url = `/${req.body.url}`
-    console.log(`session.url is set + this is it :${req.session.url}`);
-  }
-
-  console.log(`request . user is = ${req.user}`)
+    if(req.body.url){
+        req.session.url = `${req.body.url}`;
+        console.log(req.session.url);
+    }
   
-  if (req.user) {
-    console.log("user successfully logged in")
-    try {
+      let userExistance:any
+      // Retrieving UserData From Database
+      if(req.user){
+        userExistance = await users.findOne({
+        id: req.user
+    })
+      }
+      // Checking If User is Authenticated
+      
+      if(userExistance && req.isAuthenticated()){
+       try {
       // Verify the JWT token and get the decoded information
       const decodeId = jwt.verify(req.body.token, jwtSecret) as {
         id: number;
@@ -26,27 +31,24 @@ const checkUserAuthController = (req: Request, res: Response) => {
       };
 
       // Check if the user is authenticated and the decoded ID matches the user's ID
-      if (req.user && decodeId && req.user === decodeId.id) {
-        const payload = { id: req.user };
-        const token = jwt.sign(payload, jwtSecret, { expiresIn: '24h' });
+      if (decodeId && req.user === decodeId.id) {
         return res
           .status(200)
-          .json({ token: token, isAuthenticated: true });
+          .json({ token: req.body.token, isAuthenticated: true });
+      }else{
+                return res.json({ isAuthenticated: false });
       }
     } catch (error) {
-      console.log("new jwt being created")
       const payload = { id: req.user };
-      const token = jwt.sign(payload, jwtSecret, { expiresIn: '24h' });
+      const token = jwt.sign(payload, jwtSecret, { expiresIn: '48hr' });
       return res
         .status(200)
         .json({ token: token, isAuthenticated: true });
-
     }
+      } 
+      else{
+        return res.json({isAuthenticated:false})
+      }
   }
-
-  // If the user is not authenticated or JWT verification failed, redirect to the login page
-      return res.json({isAuthenticated:false})
-
-};
 
 export default checkUserAuthController;

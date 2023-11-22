@@ -10,18 +10,16 @@ const loadCategoryData = async () => {
     if (!checkCategoryDataExistence) {
 
         // DATA LOADING STARTED
-        HomePageData.map(item => {
+        HomePageData.map( async item => {
             const newCategoryItem = new CategoryItems(item);
 
             // SAVING DATA
-            newCategoryItem.save((error) => {
-                if (error) {
-                    console.log('Error saving HOMEPAGE DATA user:', error);
-                } else {
-                    console.log('HOMEPAGE DATA saved successfully');
-                }
-            });
-            
+            try {
+                await newCategoryItem.save()
+                console.log('HOMEPAGE DATA saved successfully');
+            } catch (error) {
+                console.log('Error saving HOMEPAGE DATA user:', error);
+            }    
         });
     } else {
         return console.log("HOMEPAGE DATA HAS ALREADY BEEN LOADED");

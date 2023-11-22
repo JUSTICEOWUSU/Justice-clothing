@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var mongoose_1 = require("mongoose");
+const mongoose_1 = require("mongoose");
 // Individual Item Model
-var ItemModel = new mongoose_1.Schema({
+const ItemModel = new mongoose_1.Schema({
     id: {
         type: Number,
         required: true
@@ -21,7 +21,7 @@ var ItemModel = new mongoose_1.Schema({
     }
 });
 // Main StoreItems Model
-var storeItemModel = new mongoose_1.Schema({
+const storeItemModel = new mongoose_1.Schema({
     id: {
         type: Number,
         required: true
@@ -38,5 +38,5 @@ var storeItemModel = new mongoose_1.Schema({
         type: [ItemModel]
     },
 });
-var storeItems = (0, mongoose_1.model)("StoreItem", storeItemModel);
+const storeItems = (0, mongoose_1.model)("StoreItem", storeItemModel);
 exports.default = storeItems;

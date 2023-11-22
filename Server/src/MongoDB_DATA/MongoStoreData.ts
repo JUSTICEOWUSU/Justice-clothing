@@ -12,17 +12,17 @@ const loadStoreData = async () => {
     if (!checkStoreDataExistence) {
 
         // DATA LOADING STARTED
-        toBeLoadedData.map(item => {
+        toBeLoadedData.map( async item => {
             const newStoreItem = new storeItems(item);
 
-            newStoreItem.save((error) => {
-                if (error) {
-                    console.log('Error saving the user:', error);
-                } else {
-                    console.log('User saved successfully');
-                }
+            try {
+            await newStoreItem.save()
+            console.log('User saved successfully');    
+            } catch (error) {
+                console.log('Error saving the user:', error);
+            }    
+
             });
-        });
     } else {
         return console.log("DATA HAS ALREADY BEEN LOADED");
     }

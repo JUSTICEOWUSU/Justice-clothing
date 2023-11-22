@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Hats = exports.Jackets = exports.Sneakers = exports.Women = exports.Mens = void 0;
-var Hats = {
+const Hats = {
     id: 1,
     title: 'Hats',
     routeName: 'hats',
@@ -135,7 +135,7 @@ var Hats = {
     ]
 };
 exports.Hats = Hats;
-var Sneakers = {
+const Sneakers = {
     id: 2,
     title: 'Sneakers',
     routeName: 'sneakers',
@@ -227,7 +227,7 @@ var Sneakers = {
     ]
 };
 exports.Sneakers = Sneakers;
-var Jackets = {
+const Jackets = {
     id: 3,
     title: 'Jackets',
     routeName: 'jackets',
@@ -331,7 +331,7 @@ var Jackets = {
     ]
 };
 exports.Jackets = Jackets;
-var Women = {
+const Women = {
     id: 4,
     title: 'Womens',
     routeName: 'womens',
@@ -479,7 +479,7 @@ var Women = {
     ]
 };
 exports.Women = Women;
-var Mens = {
+const Mens = {
     id: 5,
     title: 'Mens',
     routeName: 'mens',
