@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "npm run dev --prefix Client",
     "start-server": "npm run start --prefix Server",
-    "install-server":"npm install --prefix Server"
+    "install-server": "npm install --prefix Server"
   },
   "repository": {
     "type": "git",
@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/justicelearner/eCommerce-App/issues"
   },
-  "homepage": "https://github.com/justicelearner/eCommerce-App#readme"
+  "homepage": "https://github.com/justicelearner/eCommerce-App#readme",
+  "dependencies": {
+    "@types/node": "^20.9.2"
+  }
 }

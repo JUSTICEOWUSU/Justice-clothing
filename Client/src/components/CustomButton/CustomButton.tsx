@@ -13,7 +13,7 @@ function CustomButton({
 }: CustomButtonProps):JSX.Element {
   return (
     <button className={`${style.btn} ${style[checkout]}`} style={btnStyle} onClick={onclick} type={type}>
-      <a href={to} style={linkStyle}>{text}</a>
+      <h6  style={linkStyle} className={style.h6}>{text}</h6>
       <span>{text}</span> {child}
     </button>
   );

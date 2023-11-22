@@ -1,16 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-type InitialState = boolean
+type InitialState = {
+    userIsAuthenticated:boolean
+}
 
-const initialState:InitialState = false
+const initialState:InitialState = {
+    userIsAuthenticated:false
+}
 
 const authState = createSlice({
-    name: "CartStates",
+    name: "oauthStates",
     initialState,
     reducers: {
 
         changeAuthState: (state, { payload }: PayloadAction<boolean>) => {
-            state = payload;
+            state.userIsAuthenticated = payload;
         }
     }
 })

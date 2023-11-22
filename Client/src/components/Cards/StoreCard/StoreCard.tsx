@@ -1,42 +1,38 @@
 import style from "./StoreCard.module.css";
 import StoreCardProps from "../../../Types/StoreCardTypes";
-import { useDispatch } from "react-redux";
+import { useDispatch ,useSelector} from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
-import { changeAuthState } from "../../../REDUX/AuthenticationStates/AuthenticationStateReducer";
-
+import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import { addToCart } from "../../../REDUX/CartStates/CartReducer";
-// import { useGetAuthStateMutation } from "../../../REDUX/API_Queries/E_CommerceAPI";
-import Cookie from "js-cookie";
+import { Console } from "console";
 
 type click = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
-export async function checkAndAuthenticateUser(data: string,url?:string) {
-
+export async function checkAndAuthenticateUser(data: string, url?: string) {
   try {
     const respond = await fetch(
-     
       "http://localhost:7000/auth/checkUserAuthentication",
-     
+
       {
-       
-       method: "POST",
-       redirect:"follow",
-       headers: {
-         "content-type": "application/json",
-       },
+        method: "POST",
+        redirect: "follow",
+        headers: {
+          "content-type": "application/json",
+        },
+        credentials: "include",
         body: JSON.stringify({ token: data, url }),
-       
-     }
-   );
-    
+      }
+    );
+
     if (!respond.ok) {
-      throw new Error( `An Error ocurred Status:${respond.status}`)
+      throw new Error(`An Error ocurred Status:${respond.status}`);
     }
-    return respond.json()
-  }catch(err){
-    console.log(err)
+    return respond.json();
+  } catch (err) {
+    console.log(err);
   }
 }
+
 
 function StoreCard({
   imageUrl,
@@ -48,42 +44,17 @@ function StoreCard({
 }: StoreCardProps) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const location = useLocation().pathname.split("/")
-  const loc= location[location.length-1]
-  
-
-  const  respondToButtonClick: click =  async() => {
-    const jwt = Cookie.get("jwt");
-    if (jwt) {
-
-      const respond = await checkAndAuthenticateUser(jwt)
-      Cookie.set("jwt", respond, {
-        secure: true,
-        sameSite: "strict",
-        expires: 7,
-      });
-      
-    } else {
-
-      const respond = await checkAndAuthenticateUser("unAuthenticated", loc);
-      
-      if (!respond.isAuthenticated) {
-
-        return navigate("/login")
-
-      } else {
-
-         Cookie.set("jwt", respond, {
-           secure: true,
-           sameSite: "strict",
-           expires: 7,
-         });
-        
-              dispatch(changeAuthState(true));
-
-      }
-      } 
-    
+  const location = useLocation();
+  const {userIsAuthenticated} = useSelector((state: storeType) => state.authState);
+  const respondToButtonClick: click = async () => {
+    if (!userIsAuthenticated) {
+      await checkAndAuthenticateUser("unknownUser",`${location.pathname}`);
+        return navigate("/login");
+    } 
+        console.log(
+          "--------------------------------------------isauthenticated"
+        );
+        console.log(userIsAuthenticated);
 
     return dispatch(
       addToCart({

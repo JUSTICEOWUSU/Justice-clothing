@@ -50,12 +50,12 @@ export function InfiniteCarousel(): JSX.Element{
     <div className={`${style.EmptyCont} ${style.CustomEmptyCont}`}>
       <span className={`${style.CTitle}`}>peaple also search for:</span>
       {data && (
-        <div className={`${style.ItemsToScroll}`}>
+        <div className={`${style.ItemsToScroll}`} >
           <div className={`${style.GenCont}`}>
             <div className={`${style.ItemsToScrollCont}`}>
-              {finalShuffled.map((item) => {
+              {finalShuffled.map((item,index) => {
                 return (
-                  <div className={`${style.scrollItem}`}>
+                  <div className={`${style.scrollItem}`} key={index}>
                     <p className={`${style.scrollItemTitle}`}>{`${item.name}`}</p>
                     <div className={`${style.blendCover}`}></div>
                     <img
@@ -71,9 +71,9 @@ export function InfiniteCarousel(): JSX.Element{
 
           <div className={`${style.GenCont}`}>
             <div className={`${style.ItemsToScrollCont}`}>
-              {finalShuffled.map((item) => {
+              {finalShuffled.map((item,index) => {
                 return (
-                  <div className={`${style.scrollItem}`}>
+                  <div className={`${style.scrollItem}`} key={index}>
                     <p className={`${style.scrollItemTitle}`}>{`${item.name}`}</p>
                     <div className={`${style.blendCover}`}></div>
                     <img

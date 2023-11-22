@@ -5,7 +5,6 @@ import { CiFacebook } from "react-icons/ci";
 import { FcGoogle } from "react-icons/fc";
 import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import { FaXTwitter } from "react-icons/fa6";
-import { useState } from "react";
 import {useSelector,useDispatch} from "react-redux"
 import Cookie from "js-cookie";
 import {changeAuthState} from "../../../REDUX/AuthenticationStates/AuthenticationStateReducer"
@@ -36,12 +35,11 @@ const FStyle: React.CSSProperties = {
   margin: "unset",
 };
 
-
-
  async function respondToLogoutRequest() { 
   try {
    const respond = await fetch("http://localhost:7000/auth/logout", {
      method: "GET",
+     credentials: "include",
    });
     
     if (!respond.ok) {
@@ -57,33 +55,28 @@ const FStyle: React.CSSProperties = {
 // Main Sign In form
 function SignInForms(): JSX.Element {
   const dispatch = useDispatch();
-  const isAuthenticated  = useSelector(
+  const {userIsAuthenticated}  = useSelector(
       (state: storeType) => state.authState
     );
 
   const navigate = useNavigate()
-  const [blur, setBlur] = useState("");
-  const onFocus = () => {
-    setBlur("blur");
-  };
-
-
+  
   async function respondToLogout() {
-    const respond = (await respondToLogoutRequest()) as { logout: boolean };
-    if (respond.logout) {
+    const respond = await respondToLogoutRequest();
+    if (respond.logOut) {
+
       Cookie.remove("jwt");
       dispatch(changeAuthState(false))
       return navigate("/");
     }
   }
-
   return (
     <div className={`${style.signInCont}`}>
       <h2 className={style.FormTitle}>
-        {isAuthenticated ? "SignOut Here " : "Welcome"}
+        {userIsAuthenticated ? "SignOut Here " : "Welcome"}
       </h2>
       <span className={` ${style.buttonsCont}`}>
-        {isAuthenticated ? (
+        {userIsAuthenticated ? (
           <CustomButton
             text={"SignOut"}
             btnStyle={GStyle}
@@ -99,17 +92,21 @@ function SignInForms(): JSX.Element {
               linkStyle={{ color: "#000" }}
               checkout="link"
               child={<FcGoogle />}
-              to={"http://localhost:7000/auth/google"}
-              />
-              
+              onclick={() => {
+                window.location.href = "http://localhost:7000/auth/google";
+              }}
+            />
+
             <CustomButton
               text={"sign in with facebook"}
               checkout="link"
               btnStyle={FStyle}
               child={<CiFacebook />}
-              to={"http://localhost:7000/auth/facebook"}
-              />
-              
+              onclick={() => {
+                window.location.href = "http://localhost:7000/auth/facebook";
+              }}
+            />
+
             <CustomButton
               text={"sign in with"}
               checkout="link"
