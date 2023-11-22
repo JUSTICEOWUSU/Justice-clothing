@@ -11,7 +11,7 @@ type click = (event: React.MouseEvent<HTMLButtonElement>) => void;
 export async function checkAndAuthenticateUser(data: string, url?: string) {
   try {
     const respond = await fetch(
-      "http://localhost:7000/auth/checkUserAuthentication",
+      "justice-clothing-api.vercel.app/auth/checkUserAuthentication",
 
       {
         method: "POST",
@@ -51,10 +51,6 @@ function StoreCard({
       await checkAndAuthenticateUser("unknownUser",`${location.pathname}`);
         return navigate("/login");
     } 
-        console.log(
-          "--------------------------------------------isauthenticated"
-        );
-        console.log(userIsAuthenticated);
 
     return dispatch(
       addToCart({

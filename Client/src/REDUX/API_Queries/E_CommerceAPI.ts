@@ -4,7 +4,7 @@ import { HomeItems,StoreItems} from './API_DataTypes';
 export const  E_CommerceApi = createApi({
     reducerPath:'API',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:7000',
+        baseUrl: 'justice-clothing-api.vercel.app',
     }),
 
     endpoints: (build) => ({
