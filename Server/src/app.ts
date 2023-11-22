@@ -132,8 +132,8 @@ app.use('/shopData', shopRouter);
 app.use('/categories', categoriesRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/auth', authRouter);
-app.get('/', (req:Request, res:Response) => {
-    res.send({server:"started"})
+app.get('/*', (req:Request, res:Response) => {
+    res.send("Server is ON")
 });
 
 export default app;
