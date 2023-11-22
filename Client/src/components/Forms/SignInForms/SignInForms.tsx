@@ -37,7 +37,7 @@ const FStyle: React.CSSProperties = {
 
  async function respondToLogoutRequest() { 
   try {
-   const respond = await fetch("justice-clothing-api.vercel.app/auth/logout", {
+   const respond = await fetch("/auth/logout", {
      method: "GET",
      credentials: "include",
    });
@@ -93,7 +93,7 @@ function SignInForms(): JSX.Element {
               checkout="link"
               child={<FcGoogle />}
               onclick={() => {
-                window.location.href = "justice-clothing-api.vercel.app/auth/google";
+                window.location.href = "/auth/google";
               }}
             />
 
@@ -103,7 +103,7 @@ function SignInForms(): JSX.Element {
               btnStyle={FStyle}
               child={<CiFacebook />}
               onclick={() => {
-                window.location.href = "justice-clothing-api.vercel.app/auth/facebook";
+                window.location.href = "/auth/facebook";
               }}
             />
 

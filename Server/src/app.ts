@@ -1,4 +1,5 @@
 import express,{Request,Response} from 'express';
+import path from 'path';
 import passport from 'passport';
 import cors from 'cors'
 import { config } from 'dotenv';
@@ -132,8 +133,9 @@ app.use('/shopData', shopRouter);
 app.use('/categories', categoriesRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/auth', authRouter);
-app.get('/*', (req:Request, res:Response) => {
-    res.send("Server is ON")
+app.use(express.static(path.join(__dirname, "public")));
+app.get("/*", (req: Request, res: Response) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 export default app;

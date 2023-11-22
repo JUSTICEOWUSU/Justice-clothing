@@ -11,7 +11,7 @@ type click = (event: React.MouseEvent<HTMLButtonElement>) => void;
 export async function checkAndAuthenticateUser(data: string, url?: string) {
   try {
     const respond = await fetch(
-      "justice-clothing-api.vercel.app/auth/checkUserAuthentication",
+      "/auth/checkUserAuthentication",
 
       {
         method: "POST",

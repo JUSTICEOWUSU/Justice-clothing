@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const path_1 = __importDefault(require("path"));
 const passport_1 = __importDefault(require("passport"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = require("dotenv");
@@ -110,7 +111,8 @@ app.use('/shopData', shopRouter_1.default);
 app.use('/categories', categoriesRoute_1.default);
 app.use('/checkout', checkoutRouter_1.default);
 app.use('/auth', authRouter_1.default);
-app.get('/*', (req, res) => {
-    res.send("Server is ON");
+app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
+app.get("/*", (req, res) => {
+    res.sendFile(path_1.default.join(__dirname, "public", "index.html"));
 });
 exports.default = app;
