@@ -133,7 +133,7 @@ app.use('/categories', categoriesRouter);
 app.use('/checkout', checkoutRouter);
 app.use('/auth', authRouter);
 app.get('/', (req:Request, res:Response) => {
-    res.send("Server is ON")
+    res.send({server:"started"})
 });
 
 export default app;

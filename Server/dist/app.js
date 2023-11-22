@@ -111,6 +111,6 @@ app.use('/categories', categoriesRoute_1.default);
 app.use('/checkout', checkoutRouter_1.default);
 app.use('/auth', authRouter_1.default);
 app.get('/', (req, res) => {
-    res.send("Server is ON");
+    res.send({ server: "started" });
 });
 exports.default = app;
