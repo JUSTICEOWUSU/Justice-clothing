@@ -1,7 +1,14 @@
 {
   "compilerOptions": {
-      "rootDir": "./src",
-    "outDir": "./dist",
+    "lib": ["es6"],                     
+    "allowJs": true,
+     "moduleResolution": "node",
+    "outDir": "dist", 
+    "baseUrl":".",
+    "noImplicitAny": true,
+    "resolveJsonModule": true,
+    "rootDir": "./src",
+    
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
     /* Projects */
@@ -107,6 +114,10 @@
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true  ,                               /* Skip type checking all .d.ts files. */
+     "paths": {
+            "*": ["node_modules/*", "src/types/*"]
+        },
   
-  }
+  },
+  "include": ["./src/**/*"]
 }
