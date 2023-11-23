@@ -25,3 +25,4 @@ const httpGetCategories = (req, res) => __awaiter(void 0, void 0, void 0, functi
         .json({ categories: categoryData });
 });
 exports.default = httpGetCategories;
+//# sourceMappingURL=categoriesController.js.map

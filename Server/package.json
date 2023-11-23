@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.ts",
     "start": "node ./dist/index.js",
-    "build": "rimraf ./dist && tsc && copyfiles -u 1 src/public/**/*.* dist",
+    "dep": "rimraf ./dist && tsc && copyfiles -u 1 src/public/**/*.* dist",
     "add-build": "git add dist",
     "ts.check": "tsc --project tsconfig.json"
   },

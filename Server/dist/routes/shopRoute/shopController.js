@@ -25,3 +25,4 @@ const httpGetStoreData = (req, res) => __awaiter(void 0, void 0, void 0, functio
         .json({ categories: storeData });
 });
 exports.default = httpGetStoreData;
+//# sourceMappingURL=shopController.js.map

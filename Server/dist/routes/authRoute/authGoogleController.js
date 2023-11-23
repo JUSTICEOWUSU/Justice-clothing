@@ -13,3 +13,4 @@ const googleCallBackController = passport_1.default.authenticate('google', {
     failureRedirect: "http://localhost:3000/login",
 });
 exports.googleCallBackController = googleCallBackController;
+//# sourceMappingURL=authGoogleController.js.map

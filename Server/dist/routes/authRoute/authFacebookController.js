@@ -13,3 +13,4 @@ const facebookCallBackController = passport_1.default.authenticate("facebook", {
     failureRedirect: "http://localhost:3000/login",
 });
 exports.facebookCallBackController = facebookCallBackController;
+//# sourceMappingURL=authFacebookController.js.map

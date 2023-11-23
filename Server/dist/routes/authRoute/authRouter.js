@@ -30,3 +30,4 @@ authRouter.get("/google/callback", authGoogleController_1.googleCallBackControll
 authRouter.post("/checkUserAuthentication", checkUserController_1.default);
 authRouter.get("/logout", authLogoutController_1.default);
 exports.default = authRouter;
+//# sourceMappingURL=authRouter.js.map

@@ -22,3 +22,4 @@ const itemsCategorySchema = new mongoose_1.Schema({
 });
 const CategoryItems = (0, mongoose_1.model)("StoreCategory", itemsCategorySchema);
 exports.default = CategoryItems;
+//# sourceMappingURL=categoriesModel.js.map

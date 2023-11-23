@@ -8,3 +8,4 @@ const checkoutController_1 = __importDefault(require("./checkoutController"));
 const checkoutRouter = (0, express_1.Router)();
 checkoutRouter.post("/", checkoutController_1.default);
 exports.default = checkoutRouter;
+//# sourceMappingURL=checkoutRouter.js.map

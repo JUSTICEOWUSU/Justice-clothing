@@ -19,3 +19,4 @@ const authLogoutController = (req, res) => {
     });
 };
 exports.default = authLogoutController;
+//# sourceMappingURL=authLogoutController.js.map
