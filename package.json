@@ -18,8 +18,5 @@
   "bugs": {
     "url": "https://github.com/justicelearner/eCommerce-App/issues"
   },
-  "homepage": "https://github.com/justicelearner/eCommerce-App#readme",
-  "dependencies": {
-    "@types/node": "^20.9.2"
-  }
+  "homepage": "https://github.com/justicelearner/eCommerce-App#readme"
 }
