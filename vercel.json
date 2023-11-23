@@ -11,7 +11,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "destination": "dist/index.js"
+            "des": "dist/index.js"
         }
     ]
 }
