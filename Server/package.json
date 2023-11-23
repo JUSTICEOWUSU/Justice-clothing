@@ -7,16 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon ./src/index.ts",
     "start": "node ./dist/index.js",
-    "dep": "rimraf ./dist && tsc && cp -R ./src/public ./dist/",
+    "build": "rimraf ./dist && tsc && cp -R ./src/public ./dist/",
     "add-build": "git add dist",
     "ts.check": "tsc --project tsconfig.json"
-
   },
   "pre-commit": [
     "ts.check",
     "build",
-    "add-build"],
-
+    "add-build"
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -43,6 +42,7 @@
     "@types/passport-facebook": "^3.0.3",
     "@types/passport-google-oauth20": "^2.0.14",
     "nodemon": "^3.0.1",
+    "pre-commit": "^1.2.2",
     "rimraf": "^5.0.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.3.2"
