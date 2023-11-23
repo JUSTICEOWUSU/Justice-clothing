@@ -22,3 +22,5 @@ const startServer = async () => {
 
 // Starting Server
 startServer()
+
+export default app
