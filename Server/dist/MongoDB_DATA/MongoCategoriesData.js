@@ -38,4 +38,3 @@ const loadCategoryData = () => __awaiter(void 0, void 0, void 0, function* () {
     return console.log("ALL HOMEPAGE DATA HAS BEEN LOADED SUCCESSFULLY");
 });
 exports.default = loadCategoryData;
-//# sourceMappingURL=MongoCategoriesData.js.map

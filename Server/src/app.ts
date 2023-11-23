@@ -4,7 +4,7 @@ import passport from 'passport';
 import cors from 'cors'
 import { config } from 'dotenv';
 import session from 'express-session';
-import MongoStore from 'connect-mongo'
+import MongoStore from "connect-mongo"
 const Google = require('passport-google-oidc');
 import Facebook from 'passport-facebook';
 import shopRouter from './routes/shopRoute/shopRouter';

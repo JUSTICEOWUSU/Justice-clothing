@@ -114,4 +114,3 @@ app.get("/*", (req, res) => {
     res.sendFile(path_1.default.join(__dirname, "public", "index.html"));
 });
 exports.default = app;
-//# sourceMappingURL=app.js.map

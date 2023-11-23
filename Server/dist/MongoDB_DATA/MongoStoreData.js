@@ -38,4 +38,3 @@ const loadStoreData = () => __awaiter(void 0, void 0, void 0, function* () {
     return console.log("ALL DATA HAS BEEN LOADED SUCCESSFULLY");
 });
 exports.default = loadStoreData;
-//# sourceMappingURL=MongoStoreData.js.map

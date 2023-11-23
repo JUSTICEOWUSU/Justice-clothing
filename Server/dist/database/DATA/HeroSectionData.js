@@ -35,4 +35,3 @@ const HomePageData = [
     }
 ];
 exports.default = HomePageData;
-//# sourceMappingURL=HeroSectionData.js.map

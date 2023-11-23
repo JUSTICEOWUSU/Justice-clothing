@@ -23,4 +23,3 @@ const connectToDatabase = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, mongoose_1.connect)(`${process.env.MONGODB_KEY}`);
 });
 exports.connectToDatabase = connectToDatabase;
-//# sourceMappingURL=mongoDBConnection.js.map

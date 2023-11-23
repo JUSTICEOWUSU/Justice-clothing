@@ -40,4 +40,3 @@ const storeItemModel = new mongoose_1.Schema({
 });
 const storeItems = (0, mongoose_1.model)("StoreItem", storeItemModel);
 exports.default = storeItems;
-//# sourceMappingURL=storeItemsModel.js.map

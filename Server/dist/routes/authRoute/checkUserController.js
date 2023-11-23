@@ -57,4 +57,3 @@ const checkUserAuthController = (req, res) => __awaiter(void 0, void 0, void 0, 
     }
 });
 exports.default = checkUserAuthController;
-//# sourceMappingURL=checkUserController.js.map

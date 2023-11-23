@@ -31,4 +31,3 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
 });
 // Starting Server
 startServer();
-//# sourceMappingURL=index.js.map
