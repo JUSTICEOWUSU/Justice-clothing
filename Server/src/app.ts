@@ -10,7 +10,7 @@ const Livereload = require('connect-livereload')
 import Facebook from 'passport-facebook';
 import shopRouter from './routes/shopRoute/shopRouter';
 import authRouter from './routes/authRoute/authRouter';
-const checkoutRouter = require("./routes/PaymentRoute/checkoutRouter");
+import checkoutRouter from './routes/PaymentRoute/checkoutRouter';
 import categoriesRouter from './routes/categoryRoute/categoriesRoute';
 config();
 import users from './database/DBModels/userModel';
