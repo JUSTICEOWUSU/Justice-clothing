@@ -12,19 +12,19 @@ const authRouter = (0, express_1.Router)();
 authRouter.get("/facebook", authFacebookController_1.facebookSignUpController);
 authRouter.get("/facebook/callback", authFacebookController_1.facebookCallBackController, (req, res) => {
     if (req.session.url) {
-        return res.redirect(`http://localhost:3000${req.session.url}`);
+        return res.redirect(`${req.session.url}`);
     }
     else {
-        return res.redirect("http://localhost:3000");
+        return res.redirect("/");
     }
 });
 authRouter.get("/google", authGoogleController_1.googleSignUpController);
 authRouter.get("/google/callback", authGoogleController_1.googleCallBackController, (req, res) => {
     if (req.session.url) {
-        return res.redirect(`http://localhost:3000${req.session.url}`);
+        return res.redirect(`${req.session.url}`);
     }
     else {
-        return res.redirect("http://localhost:3000");
+        return res.redirect("/");
     }
 });
 authRouter.post("/checkUserAuthentication", checkUserController_1.default);
