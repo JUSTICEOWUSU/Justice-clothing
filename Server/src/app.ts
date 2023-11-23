@@ -6,7 +6,6 @@ import { config } from 'dotenv';
 import session from 'express-session';
 import MongoStore from 'connect-mongo'
 const Google = require('passport-google-oidc');
-const Livereload = require('connect-livereload')
 import Facebook from 'passport-facebook';
 import shopRouter from './routes/shopRoute/shopRouter';
 import authRouter from './routes/authRoute/authRouter';
@@ -126,7 +125,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(Livereload());
 app.use(express.json());
 
 app.use('/shopData', shopRouter);

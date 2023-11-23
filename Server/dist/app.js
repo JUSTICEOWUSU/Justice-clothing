@@ -20,7 +20,6 @@ const dotenv_1 = require("dotenv");
 const express_session_1 = __importDefault(require("express-session"));
 const connect_mongo_1 = __importDefault(require("connect-mongo"));
 const Google = require('passport-google-oidc');
-const Livereload = require('connect-livereload');
 const passport_facebook_1 = __importDefault(require("passport-facebook"));
 const shopRouter_1 = __importDefault(require("./routes/shopRoute/shopRouter"));
 const authRouter_1 = __importDefault(require("./routes/authRoute/authRouter"));
@@ -105,7 +104,6 @@ app.use((0, express_session_1.default)({
 }));
 app.use(passport_1.default.initialize());
 app.use(passport_1.default.session());
-app.use(Livereload());
 app.use(express_1.default.json());
 app.use('/shopData', shopRouter_1.default);
 app.use('/categories', categoriesRoute_1.default);
