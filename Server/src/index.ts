@@ -6,7 +6,6 @@ import loadCategoryData from "./MongoDB_DATA/MongoCategoriesData";
 import {config} from "dotenv";
 config();
 
-
 const server =http.createServer(app)
 
 const PORT: string | number = process.env.PORT || 7000
