@@ -4,7 +4,7 @@ import { googleCallBackController, googleSignUpController } from "./authGoogleCo
 import checkUserAuthController from "./checkUserController";
 import authLogoutController from "./authLogoutController";
 
-const authRouter = Router();
+const authRouter:Router = Router();
 
 authRouter.get("/facebook", facebookSignUpController);
 authRouter.get("/facebook/callback", facebookCallBackController,(req, res) => {
