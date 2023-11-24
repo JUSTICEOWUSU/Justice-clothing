@@ -9,7 +9,7 @@ const Google = require('passport-google-oidc');
 import Facebook from 'passport-facebook';
 import shopRouter from './routes/shopRoute/shopRouter';
 import authRouter from './routes/authRoute/authRouter';
-const checkoutRouter = require("./routes/PaymentRoute/checkoutRouter");
+// const checkoutRouter = require("./routes/PaymentRoute/checkoutRouter");
 import categoriesRouter from './routes/categoryRoute/categoriesRoute';
 config();
 import users from './database/DBModels/userModel';
@@ -129,7 +129,7 @@ app.use(express.json());
 
 app.use('/shopData', shopRouter);
 app.use('/categories', categoriesRouter);
-app.use('/checkout', checkoutRouter);
+// app.use('/checkout', checkoutRouter);
 app.use('/auth', authRouter);
 app.use(express.static(path.join(__dirname, "public")));
 app.get("/*", (req: Request, res: Response) => {
