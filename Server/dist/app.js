@@ -23,7 +23,7 @@ const Google = require('passport-google-oidc');
 const passport_facebook_1 = __importDefault(require("passport-facebook"));
 const shopRouter_1 = __importDefault(require("./routes/shopRoute/shopRouter"));
 const authRouter_1 = __importDefault(require("./routes/authRoute/authRouter"));
-const checkoutRouter_1 = require("./routes/PaymentRoute/checkoutRouter");
+const checkoutRouter_1 = require("./routes/paymentRoute/checkoutRouter");
 const categoriesRoute_1 = __importDefault(require("./routes/categoryRoute/categoriesRoute"));
 (0, dotenv_1.config)();
 const userModel_1 = __importDefault(require("./database/DBModels/userModel"));
