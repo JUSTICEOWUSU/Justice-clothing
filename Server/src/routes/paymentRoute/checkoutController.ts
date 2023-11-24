@@ -10,7 +10,6 @@ type RequestBody = {
 const httpPostCheckout = async (req: Request, res: Response) => {
     const reqBody: RequestBody = req.body;
     const {name,amount,email} = reqBody;
-    console.log(reqBody);
     if(!email || !amount || !name) return (
         res
         .status(505)

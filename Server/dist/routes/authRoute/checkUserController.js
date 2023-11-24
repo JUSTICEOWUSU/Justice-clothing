@@ -20,7 +20,6 @@ const checkUserAuthController = (req, res) => __awaiter(void 0, void 0, void 0, 
     const jwtSecret = process.env.JWT_KEY;
     if (req.body.url) {
         req.session.url = `${req.body.url}`;
-        console.log(req.session.url);
     }
     let userExistance;
     // Retrieving UserData From Database

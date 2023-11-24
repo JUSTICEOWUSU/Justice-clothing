@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const httpPostCheckout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const reqBody = req.body;
     const { name, amount, email } = reqBody;
-    console.log(reqBody);
     if (!email || !amount || !name)
         return (res
             .status(505)

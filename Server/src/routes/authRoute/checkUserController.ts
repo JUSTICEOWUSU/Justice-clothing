@@ -9,7 +9,6 @@ const checkUserAuthController = async (req: Request, res: Response) => {
     
     if(req.body.url){
         req.session.url = `${req.body.url}`;
-        console.log(req.session.url);
     }
   
       let userExistance:any

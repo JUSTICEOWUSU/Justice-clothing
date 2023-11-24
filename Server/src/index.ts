@@ -14,7 +14,6 @@ const startServer = async () => {
     await connectToDatabase();
     await loadCategoryData();
     await loadStoreData();
-    console.log('hey')
     server.listen(PORT, () => {
         console.log("listening to port: " + PORT);
     })

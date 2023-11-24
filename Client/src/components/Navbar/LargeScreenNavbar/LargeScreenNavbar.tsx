@@ -2,7 +2,7 @@ import style from "./LargeScreenNavbar.module.css";
 import CustomNavLink from "../../CustomNavLink/CustomNavLink";
 import SmallScreenBar from "../SmallScreenNavbar/SmallScreenBar";
 import CartBag from "../../Cart/CartBag/CartBag";
-import {Outlet} from "react-router-dom";
+import {Outlet,useNavigate} from "react-router-dom";
 import {useSelector,useDispatch} from "react-redux";
 import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import SearchBar from "../../SearchBar/SearchBar";
@@ -20,6 +20,7 @@ import { checkAndAuthenticateUser } from "../../Cards/StoreCard/StoreCard";
 // Main LargeScreen navigation bar 
 function LargeScreenNavbar(): JSX.Element {
   const location = useLocation()
+  const navigate = useNavigate()
   const {userIsAuthenticated} = useSelector((state: storeType) => state.authState);
   const dispatch = useDispatch()
 
@@ -51,7 +52,11 @@ function LargeScreenNavbar(): JSX.Element {
       <div
         className={`${style.largeNavCont} container-fluid ${style[showAndHideNav]}`}
       >
-        <span className={style.logoContainer}>
+        <span className={style.logoContainer} onClick={
+          ()=>{
+            navigate('/')
+          }
+        }>
           <img
             src={MySVG}
             alt="JUSTICE_CLOTHING LOGO"

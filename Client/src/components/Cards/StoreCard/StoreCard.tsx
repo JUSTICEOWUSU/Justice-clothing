@@ -4,7 +4,6 @@ import { useDispatch ,useSelector} from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { storeType } from "../../../REDUX/ReduxStore/ReduxStore";
 import { addToCart } from "../../../REDUX/CartStates/CartReducer";
-import { Console } from "console";
 
 type click = (event: React.MouseEvent<HTMLButtonElement>) => void;
 

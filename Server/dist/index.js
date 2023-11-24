@@ -25,7 +25,6 @@ const startServer = () => __awaiter(void 0, void 0, void 0, function* () {
     yield (0, mongoDBConnection_1.connectToDatabase)();
     yield (0, MongoCategoriesData_1.default)();
     yield (0, MongoStoreData_1.default)();
-    console.log('hey');
     server.listen(PORT, () => {
         console.log("listening to port: " + PORT);
     });
