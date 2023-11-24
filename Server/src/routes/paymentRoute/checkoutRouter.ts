@@ -5,4 +5,4 @@ const checkoutRouter:Router = Router();
 
 checkoutRouter.post("/",httpPostCheckout);
 
-export default checkoutRouter
+export { checkoutRouter }; 

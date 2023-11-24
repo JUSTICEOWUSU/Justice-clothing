@@ -23,7 +23,7 @@ const Google = require('passport-google-oidc');
 const passport_facebook_1 = __importDefault(require("passport-facebook"));
 const shopRouter_1 = __importDefault(require("./routes/shopRoute/shopRouter"));
 const authRouter_1 = __importDefault(require("./routes/authRoute/authRouter"));
-const checkoutRouter_1 = __importDefault(require("./routes/PaymentRoute/checkoutRouter"));
+const checkoutRouter_1 = require("./routes/PaymentRoute/checkoutRouter");
 const categoriesRoute_1 = __importDefault(require("./routes/categoryRoute/categoriesRoute"));
 (0, dotenv_1.config)();
 const userModel_1 = __importDefault(require("./database/DBModels/userModel"));
@@ -107,7 +107,7 @@ app.use(passport_1.default.session());
 app.use(express_1.default.json());
 app.use('/shopData', shopRouter_1.default);
 app.use('/categories', categoriesRoute_1.default);
-app.use('/checkout', checkoutRouter_1.default);
+app.use('/checkout', checkoutRouter_1.checkoutRouter);
 app.use('/auth', authRouter_1.default);
 app.use(express_1.default.static(path_1.default.join(__dirname, "public")));
 app.get("/*", (req, res) => {
