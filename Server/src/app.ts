@@ -9,7 +9,7 @@ const Google = require('passport-google-oidc');
 import Facebook from 'passport-facebook';
 import shopRouter from './routes/shopRoute/shopRouter';
 import authRouter from './routes/authRoute/authRouter';
-import checkoutRouter from './routes/PaymentRoute/checkoutRouter';
+const checkoutRouter = require("./routes/PaymentRoute/checkoutRouter");
 import categoriesRouter from './routes/categoryRoute/categoriesRoute';
 config();
 import users from './database/DBModels/userModel';
