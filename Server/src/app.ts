@@ -104,12 +104,12 @@ passport.deserializeUser(async (id: number, done) => {
 
 
 const app = express();
-app.use(cors(
-    {
-    origin: '*',
+app.use(
+  cors({
+    origin: "https://justice-clothing.vercel.app",
     credentials: true,
-    }
-))
+  })
+);
 app.use(session({
     secret: 'your-secret-key',
     resave: false,

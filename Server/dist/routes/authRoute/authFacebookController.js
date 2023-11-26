@@ -10,6 +10,6 @@ const facebookSignUpController = passport_1.default.authenticate("facebook", {
 });
 exports.facebookSignUpController = facebookSignUpController;
 const facebookCallBackController = passport_1.default.authenticate("facebook", {
-    failureRedirect: "http://localhost:3000/login",
+    failureRedirect: "https://justice-clothing.vercel.app",
 });
 exports.facebookCallBackController = facebookCallBackController;

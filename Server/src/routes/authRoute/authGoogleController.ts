@@ -4,8 +4,8 @@ const googleSignUpController = passport.authenticate('google', {
     scope: ['profile','email']
 });
 
-const googleCallBackController = passport.authenticate('google', {
-    failureRedirect:"http://localhost:3000/login",
+const googleCallBackController = passport.authenticate("google", {
+  failureRedirect: "https://justice-clothing.vercel.app",
 });
 
 export {
