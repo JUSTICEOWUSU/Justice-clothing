@@ -89,13 +89,14 @@ This project is a full-stack e-commerce web application built with React for the
   
   ### Environment Variables
   Create a .env file in the server directory and add the following:
+  
       ```sh
-        MONGODB_KEY=<your_MongoDB_connection_Key>
-        JWT_KEY=<your_JWT_key>
-        FACEBOOK_SECRET_KEY=<your_Facebook_secret_key>
-        FACEBOOK_CLIENT_ID=<your_facebook_client_key>
-        GOOGLE_SECRET_KEY=<your_Google_Secret_key>
-        GOOGLE_CLIENT_ID=<your_Google_Client_ID_key>
+          MONGODB_KEY=<your_MongoDB_connection_Key>
+          JWT_KEY=<your_JWT_key>
+          FACEBOOK_SECRET_KEY=<your_Facebook_secret_key>
+          FACEBOOK_CLIENT_ID=<your_facebook_client_key>
+          GOOGLE_SECRET_KEY=<your_Google_Secret_key>
+          GOOGLE_CLIENT_ID=<your_Google_Client_ID_key>
 
 
 ## Project Structure
