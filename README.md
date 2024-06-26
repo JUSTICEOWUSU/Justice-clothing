@@ -65,7 +65,7 @@ This project is a full-stack e-commerce web application built with React for the
   
   ### Clone the repository
   
-      ```sh
+  ```sh
       git clone https://github.com/yourusername/ecommerce-react-app.git
       cd ecommerce-react-app
   
