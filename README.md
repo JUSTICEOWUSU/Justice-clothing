@@ -65,17 +65,16 @@ This project is a full-stack e-commerce web application built with React for the
   
   ### Clone the repository
   
-  ```sh
       git clone https://github.com/yourusername/ecommerce-react-app.git
       cd ecommerce-react-app
   
-  ### Install dependencies
-    1. Install server dependencies
+### Install dependencies
+  1. Install server dependencies
         ```sh
         cd server
         npm install
     
-    2. Install client dependencies
+  2. Install client dependencies
         ```sh
         cd ../client
         npm install
@@ -88,15 +87,15 @@ This project is a full-stack e-commerce web application built with React for the
   2. Open your browser and navigate to http://localhost:7000.
   
   ### Environment Variables
-  Create a .env file in the server directory and add the following:
-  
-      ```sh
-          MONGODB_KEY=<your_MongoDB_connection_Key>
-          JWT_KEY=<your_JWT_key>
-          FACEBOOK_SECRET_KEY=<your_Facebook_secret_key>
-          FACEBOOK_CLIENT_ID=<your_facebook_client_key>
-          GOOGLE_SECRET_KEY=<your_Google_Secret_key>
-          GOOGLE_CLIENT_ID=<your_Google_Client_ID_key>
+  Create a .env file in the server directory and add the following:  
+    ```sh
+    
+    MONGODB_KEY=<your_MongoDB_connection_Key>
+    JWT_KEY=<your_JWT_key>
+    FACEBOOK_SECRET_KEY=<your_Facebook_secret_key>
+    FACEBOOK_CLIENT_ID=<your_facebook_client_key>
+    GOOGLE_SECRET_KEY=<your_Google_Secret_key>
+    GOOGLE_CLIENT_ID=<your_Google_Client_ID_key>
 
 
 ## Project Structure
@@ -131,16 +130,16 @@ This project is a full-stack e-commerce web application built with React for the
 ## API Documentation
 
   ### Authentication
-      1. POST /api/auth/register: Register a new user
-      2. POST /api/auth/login: Authenticate a user
+   1. POST /api/auth/register: Register a new user
+   2. POST /api/auth/login: Authenticate a user
   
   ### Products
-     1. GET /api/products: Get all products
-     2.GET /api/products/
-       : Get product by ID
-     3. POST /api/products: Create a new product (admin only)
-     4. PUT /api/products/
-       : Update a product (admin only)
+  1. GET /api/products: Get all products
+  2.GET /api/products/
+     : Get product by ID
+  3. POST /api/products: Create a new product (admin only)
+  4. PUT /api/products/
+     : Update a product (admin only)
 
 
 ## Contributing
